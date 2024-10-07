@@ -1,3 +1,6 @@
+import Login from "@/modules/login/Login";
+import MainPage from "@/modules/user/MainPage";
+import Home from "@/modules/user/home/Home";
 import {
   Route,
   createBrowserRouter,
@@ -11,8 +14,8 @@ export default function RoutesProvider() {
   const authorizedProvider = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<div />}>
-          <Route path="/home" element={<div />} />
+        <Route path="/" element={<MainPage />}>
+          <Route path="/home" element={<Home />} />
           <Route path="/profile/:userId" element={<div />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -23,7 +26,7 @@ export default function RoutesProvider() {
   const anAuthorizedProvider = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/login" element={<div />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<div />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </>

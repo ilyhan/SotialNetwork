@@ -3,9 +3,10 @@ export const colors = {
     white: "rgba(255, 255, 255, 1)",
 
     //Gray
-    backgroundGray: "rgba(234, 234, 234, 1)",
+    backgroundGray: "rgba(245, 245, 245, 1)",
     gray: "rgba(131, 131, 131, 1)",
     lightGray: "rgba(170, 170, 170, 1)",
+    activeButtonGray: "rgba(225, 225, 225, 1)",
 
     //Black
     black: "rgba(0, 0, 0, 1)",

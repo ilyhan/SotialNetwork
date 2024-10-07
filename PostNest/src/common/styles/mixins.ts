@@ -59,13 +59,13 @@ export const hoverActiveBackground = (hoverColor?: string, activeColor?: string)
     }
 
     &:active {
-      background-color: ${activeColor ? activeColor : colors.lightGray};
+      background-color: ${activeColor ? activeColor : colors.activeButtonGray};
     }
   }
 
   @media (hover: none) {
     &:active {
-      background-color: ${activeColor ? activeColor : colors.lightGray};
+      background-color: ${activeColor ? activeColor : colors.activeButtonGray};
     }
   }
 `;
@@ -80,6 +80,7 @@ export const hoverActiveMove = css`
     &:active {
       opacity: 0.55;
       translate: 0px 1px;
+      scale: 0.99;
     }
   }
 

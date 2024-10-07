@@ -5,8 +5,13 @@ import {
 } from "@/common/styles/styleConstants";
 import { resetLink } from "@/common/styles/mixins";
 
-export const Container = styled('div')`
-
+export const Container = styled('main')`
+  display: grid;
+  grid-template-columns: 300px minmax(300px, 804px);
+  column-gap: 30px;
+  max-width: 1134px;
+  margin: 0 auto;
+  padding-inline: 12px;
 `;
 
 export const GlobalStyles = createGlobalStyle`
@@ -57,7 +62,6 @@ export const GlobalStyles = createGlobalStyle`
   html {
     height: 100%;
     scroll-behavior: smooth;
-    scrollbar-gutter: stable;
   } 
   body {
     height: 100%;
