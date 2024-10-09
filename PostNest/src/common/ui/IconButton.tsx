@@ -9,7 +9,7 @@ interface IconButtonProps {
 
 const IconButton = ({ icon, onClick, size = 20 }: IconButtonProps) => {
     return (
-        <SvgHelper iconName={icon} onClick={onClick} height={size} width={size}/>
+        <SvgHelper iconName={icon} onClick={onClick} height={size} width={size} />
     );
 };
 

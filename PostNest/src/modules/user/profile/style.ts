@@ -1,0 +1,81 @@
+import { clampText, defaultWrapper, hoverActive, resetButton } from "@/common/styles/mixins";
+import { borders, colors, fonts } from "@/common/styles/styleConstants";
+import styled from "styled-components";
+
+export const ProfileWrapper = styled('div')`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
+
+export const ProfileContentWrapper = styled('div')`
+    ${defaultWrapper}
+    overflow: hidden;
+    padding-bottom: 20px;
+`;
+
+export const BackgroungImgWrapper = styled('div')`
+    position: relative;
+    height: 230px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: ${borders.defaultRadius};
+`;
+
+export const BackgroungImg = styled('img')`
+    position: absolute;
+    top: -40%;
+    object-fit: cover;
+`;
+
+export const ProfileMainInfo = styled('div')`
+    position: absolute;
+    top: -50px;
+    left: 50px;
+    display: flex;
+    align-items: end;
+    gap: 30px;
+`;
+
+export const ImageWrapper = styled('div')`
+    width: 100px;
+    height: 100px;
+    border-radius: ${borders.circle};
+    border: 5px solid ${colors.white};
+    overflow: hidden;
+`;
+
+export const ProfileImage = styled('img')`
+
+`;
+
+export const ProfileName = styled('h2')`
+    ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
+    padding-bottom: 10px;
+`;
+
+export const MainInfoWrapper = styled('div')`
+    position: relative;
+    height: 70px;
+`;
+
+export const ProfileDescription = styled('div')`
+    margin-inline: 25px;
+`;
+
+export const DescriptionText = styled('p')`
+    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
+    word-wrap: break-word;
+`;
+
+export const SubscribeWrapper = styled('div')`
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+`;
+
+export const SubscribeInfoBtn = styled('button')`
+    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
+    ${resetButton}
+    ${hoverActive}
+`;

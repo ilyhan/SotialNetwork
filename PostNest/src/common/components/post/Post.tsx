@@ -17,7 +17,7 @@ const Post = () => {
     return (
         <PostWrapper>
             <SavedButton>
-                <IconButton icon="savedpost" onClick={()=>console} />
+                <IconButton icon="savedpost" onClick={()=>console}/>
             </SavedButton>
 
             <PostHeader>

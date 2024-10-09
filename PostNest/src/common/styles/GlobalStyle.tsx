@@ -62,6 +62,7 @@ export const GlobalStyles = createGlobalStyle`
   html {
     height: 100%;
     scroll-behavior: smooth;
+    /* scrollbar-gutter: stable; */
   } 
   body {
     height: 100%;
