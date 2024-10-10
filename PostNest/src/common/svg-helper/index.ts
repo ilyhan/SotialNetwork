@@ -7,6 +7,7 @@ import notification from '@/common/svg-helper/icons/notification.svg?react';
 import favorite from '@/common/svg-helper/icons/favorite.svg?react';
 import savedpost from '@/common/svg-helper/icons/savedpost.svg?react';
 import pin from '@/common/svg-helper/icons/pin.svg?react';
+import search from '@/common/svg-helper/icons/search.svg?react';
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -25,7 +26,8 @@ export type ImageComponentsTypes =
     | 'saved'
     | 'favorite'
     | 'savedpost'
-    | 'pin';
+    | 'pin'
+    | 'search';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     profile,
@@ -37,4 +39,5 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     favorite,
     savedpost,
     pin,
+    search,
 };

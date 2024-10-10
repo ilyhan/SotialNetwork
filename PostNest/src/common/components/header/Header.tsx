@@ -11,7 +11,7 @@ const Header = () => {
         <HeaderWrapper>
             <HeaderContent>
                 <Logo />
-                <SearchInput />
+                <SearchInput onSearch={(val)=>console.log(val)}/>
                 <Notification />
             </HeaderContent>
         </HeaderWrapper>
