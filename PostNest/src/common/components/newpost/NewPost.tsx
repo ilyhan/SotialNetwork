@@ -4,7 +4,8 @@ import {
     PreviewCreator,
     TextAreaWrapper,
     FooterCreator,
-    CreateButton
+    CreateButton,
+    FormPost
 } from "@/common/components/newpost/style";
 import Textarea from "@/common/ui/Textarea";
 import { useEffect, useState } from "react";
@@ -30,30 +31,32 @@ const NewPost = () => {
 
     return (
         <NewPostWrapper>
-            <PreviewCreator>
-                <UserAvatar src={defaultImg} />
+            <FormPost>
+                <PreviewCreator>
+                    <UserAvatar src={defaultImg} />
 
-                <TextAreaWrapper>
-                    <Textarea
-                        value={text}
-                        onChange={handleSetText}
-                        placeholder="Что у вас нового?"
-                        rows={1}
-                    />
-                </TextAreaWrapper>
+                    <TextAreaWrapper>
+                        <Textarea
+                            value={text}
+                            onChange={handleSetText}
+                            placeholder="Что у вас нового?"
+                            rows={1}
+                        />
+                    </TextAreaWrapper>
 
-                <DragAndDropUpload onFile={() => console}>
-                    <IconButton icon="pin" onClick={() => console} size={25} />
-                </DragAndDropUpload>
-            </PreviewCreator>
+                    <DragAndDropUpload onFile={() => console}>
+                        <IconButton icon="pin" onClick={() => console} size={25} />
+                    </DragAndDropUpload>
+                </PreviewCreator>
 
-            {isActive &&
-                <FooterCreator>
-                    <CreateButton>
-                        Опубликовать
-                    </CreateButton>
-                </FooterCreator>
-            }
+                {isActive &&
+                    <FooterCreator>
+                        <CreateButton>
+                            Опубликовать
+                        </CreateButton>
+                    </FooterCreator>
+                }
+            </FormPost>
         </NewPostWrapper>
     );
 };

@@ -8,6 +8,10 @@ export const NewPostWrapper = styled('div')`
     padding: 15px 25px;
 `;
 
+export const FormPost = styled('form')`
+
+`;
+
 export const UserAvatar = styled('img')`
     border-radius: ${borders.circle};
     height: 50px;

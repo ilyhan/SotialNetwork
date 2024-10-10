@@ -1,4 +1,4 @@
-import { 
+import {
     PostWrapper,
     PostHeader,
     PostContent,
@@ -10,28 +10,41 @@ import {
     TimeCreated,
     SavedButton
 } from "@/common/components/post/style";
-import defaultImg from "/images/default.jpg"
 import IconButton from "@/common/ui/IconButton";
+import React from "react";
 
-const Post = () => {
+interface PostProps {
+    name: string;
+    avatar: string;
+    content: string;
+}
+
+const Post = ({ name, avatar, content }: PostProps) => {
     return (
         <PostWrapper>
             <SavedButton>
-                <IconButton icon="savedpost" onClick={()=>console}/>
+                <IconButton icon="savedpost" onClick={() => console} />
             </SavedButton>
 
             <PostHeader>
-                <UserAvatar src={defaultImg}/>
-                <UserName>User Name</UserName>
+                <UserAvatar src={avatar} />
+                <UserName>{name}</UserName>
             </PostHeader>
 
             <PostContent>
-                <TextContent>Здесь будет располагаться контент, который будет создан пользователем, отправлен на бэк, проверен ИИ и показан другим пользователям</TextContent>
-                <MediaContent/>
+                <TextContent>{content.split('\n').map((line, index) => (
+                    <React.Fragment key={index}>
+                        {line}
+                        <br />
+                    </React.Fragment>
+                ))}
+                </TextContent>
+                
+                <MediaContent />
             </PostContent>
 
             <PostFooter>
-                <IconButton icon="favorite" onClick={()=>console} size={25}/>
+                <IconButton icon="favorite" onClick={() => console} size={25} />
                 <TimeCreated>15 минут назад</TimeCreated>
             </PostFooter>
         </PostWrapper>

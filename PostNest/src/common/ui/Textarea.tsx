@@ -57,11 +57,19 @@ const Textarea = ({
         e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          onChange(value + '\n');
+        }
+      };
+
     return (
         <TextAreaWrapper style={styledWrapper}>
             <TextareaStyled
                 value={value}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 name={name}
                 cols={cols}
