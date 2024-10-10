@@ -58,10 +58,17 @@ const Profile = () => {
                 </SubscribeWrapper>
             </ProfileContentWrapper>
 
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            <Post
+                avatar={defaultImg}
+                name="Ilia"
+                content="Content"
+            />
+            
+            <Post
+                avatar={defaultImg}
+                name="Ilia"
+                content="Content"
+            />
         </ProfileWrapper>
     );
 };

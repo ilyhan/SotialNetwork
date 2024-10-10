@@ -2,6 +2,7 @@ import Login from "@/modules/login/Login";
 import MainPage from "@/modules/user/MainPage";
 import Home from "@/modules/user/home/Home";
 import Profile from "@/modules/user/profile/Profile";
+import Saved from "@/modules/user/saved/Saved";
 import {
   Route,
   createBrowserRouter,
@@ -18,6 +19,7 @@ export default function RoutesProvider() {
         <Route path="/" element={<MainPage />}>
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/saved" element={<Saved />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </>

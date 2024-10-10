@@ -3,7 +3,6 @@ import Post from "@/common/components/post/Post"
 import { HomeWrapper } from "@/modules/user/home/style";
 import defaultImg from "/images/default.jpg";
 
-
 const Home = () => {
     return (
         <HomeWrapper>
