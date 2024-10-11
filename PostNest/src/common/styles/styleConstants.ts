@@ -7,6 +7,7 @@ export const colors = {
     gray: "rgba(131, 131, 131, 1)",
     lightGray: "rgba(170, 170, 170, 1)",
     activeButtonGray: "rgba(225, 225, 225, 1)",
+    grayTransparent: "rgba(131, 131, 131, 0.7)",
 
     //Black
     black: "rgba(0, 0, 0, 1)",

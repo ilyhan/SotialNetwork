@@ -12,6 +12,21 @@ const Home = () => {
                 name="Ilia"
                 content="Content"
             />
+            <Post
+                avatar={defaultImg}
+                name="Ilia"
+                content="Content"
+            />
+            <Post
+                avatar={defaultImg}
+                name="Ilia"
+                content="Content"
+            />
+            <Post
+                avatar={defaultImg}
+                name="Ilia"
+                content="Content"
+            />
         </HomeWrapper>
     );
 };

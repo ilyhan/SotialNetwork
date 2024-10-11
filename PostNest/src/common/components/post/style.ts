@@ -25,6 +25,9 @@ export const PostHeader = styled('div')`
 `;
 
 export const PostContent = styled('div')`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 `;
 
 export const PostFooter = styled('div')`
@@ -41,9 +44,6 @@ export const UserAvatar = styled('img')`
 
 export const UserName = styled('span')`
     ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
-`;
-
-export const MediaContent = styled('img')`
 `;
 
 export const TextContent = styled('p')`

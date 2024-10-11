@@ -6,12 +6,12 @@ import {
     UserAvatar,
     UserName,
     TextContent,
-    MediaContent,
     TimeCreated,
     SavedButton
 } from "@/common/components/post/style";
 import IconButton from "@/common/ui/IconButton";
 import React from "react";
+import Slider from "@/common/components/slider/Slider";
 
 interface PostProps {
     name: string;
@@ -39,8 +39,8 @@ const Post = ({ name, avatar, content }: PostProps) => {
                     </React.Fragment>
                 ))}
                 </TextContent>
-                
-                <MediaContent />
+
+                <Slider content={["https://loremflickr.com/620/480/city"]} />
             </PostContent>
 
             <PostFooter>

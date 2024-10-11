@@ -1,5 +1,5 @@
-import { defaultWrapper, hoverActiveBackground } from "@/common/styles/mixins";
-import { colors } from "@/common/styles/styleConstants";
+import { clampText, defaultWrapper, hoverActiveBackground } from "@/common/styles/mixins";
+import { colors, fonts } from "@/common/styles/styleConstants";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -27,7 +27,7 @@ export const NavListItem = styled('li')`
 
 
 export const NavItemPath = styled('span')`
-
+    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
 `;
 
 export const NavItemLink = styled(NavLink)`
