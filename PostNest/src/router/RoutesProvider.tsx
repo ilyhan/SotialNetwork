@@ -1,6 +1,7 @@
 import Login from "@/modules/login/Login";
 import MainPage from "@/modules/user/MainPage";
 import Home from "@/modules/user/home/Home";
+import PrivacyPolicy from "@/modules/user/privacyPolicy/PrivacyPolicy";
 import Profile from "@/modules/user/profile/Profile";
 import Saved from "@/modules/user/saved/Saved";
 import Support from "@/modules/user/support/Support";
@@ -23,6 +24,7 @@ export default function RoutesProvider() {
           <Route path="/saved" element={<Saved />} />
           <Route path="/support" element={<Support />} />
         </Route>
+        <Route path="/privacy_policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </>
     )
@@ -34,6 +36,7 @@ export default function RoutesProvider() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<div />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/privacy_policy" element={<PrivacyPolicy />} />
       </>
     )
   );
