@@ -16,6 +16,7 @@ import {
 import mount from "/images/mountains.jpg"
 import defaultImg from "/images/default.jpg"
 import Post from "@/common/components/post/Post";
+import NewPost from "@/common/components/newpost/NewPost";
 
 const Profile = () => {
     return (
@@ -57,6 +58,8 @@ const Profile = () => {
                     </SubscribeInfoBtn>
                 </SubscribeWrapper>
             </ProfileContentWrapper>
+
+            <NewPost />
 
             <Post
                 avatar={defaultImg}

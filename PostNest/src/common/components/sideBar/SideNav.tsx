@@ -14,7 +14,7 @@ const SideNav = () => {
                     <NavItem link="/home" icon="home" title="Главная"/>
                     <NavItem link="/saved" icon="saved" title="Сохраненное"/>
                     <NavItem link="/settings" icon="settings" title="Настройки"/>
-                    <NavItem link="/help" icon="help" title="Поддержка"/>
+                    <NavItem link="/support" icon="help" title="Поддержка"/>
                 </NavList>
             </SideNavWrapper>
         </AsideWpapper>
