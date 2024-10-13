@@ -7,7 +7,7 @@ export const Button = styled('button')`
     background-color: ${colors.black};
     color: ${colors.white};
     border-radius: ${borders.extraSmallRadius};
-    padding: 10px;
+    padding: 7px 10px;
     text-align: center;
     width: 100%;
 

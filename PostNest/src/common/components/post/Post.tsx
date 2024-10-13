@@ -40,7 +40,7 @@ const Post = ({ name, avatar, content }: PostProps) => {
                 ))}
                 </TextContent>
 
-                <Slider content={["https://loremflickr.com/620/480/city"]} />
+                <Slider content={["https://loremflickr.com/620/480/city", "https://loremflickr.com/620/481/city", "https://loremflickr.com/621/481/city"]} />
             </PostContent>
 
             <PostFooter>

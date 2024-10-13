@@ -1,61 +1,40 @@
 import {
     NewPostWrapper,
-    UserAvatar,
-    PreviewCreator,
-    TextAreaWrapper,
-    FooterCreator,
-    CreateButton,
-    FormPost
+    FormPost,
 } from "@/common/components/newpost/style";
-import Textarea from "@/common/ui/Textarea";
-import { useEffect, useState } from "react";
-import defaultImg from "/images/default.jpg";
-import DragAndDropUpload from "@/common/helper/DragAndDropUpload";
-import IconButton from "@/common/ui/IconButton";
+import { useState } from "react";
+import Slider from "@/common/components/slider/Slider";
+import FooterCreator from "@/common/components/newpost/components/FooterCreator";
+import PreviewSection from "@/common/components/newpost/components/PreviewSection";
 
 const NewPost = () => {
-    const [isActive, setIsActive] = useState(false);
     const [text, setText] = useState('');
+    const [media, setMedia] = useState<string[]>([]);
+
+    const handleAddMedia = (file: File) => {
+        setMedia(prev => [...prev, URL.createObjectURL(file)])
+    };
 
     const handleSetText = (val: string) => {
         setText(val);
     };
 
-    useEffect(() => {
-        if (text) {
-            setIsActive(true);
-        } else {
-            setIsActive(false);
-        }
-    }, [text]);
-
     return (
         <NewPostWrapper>
             <FormPost>
-                <PreviewCreator>
-                    <UserAvatar src={defaultImg} />
+                <PreviewSection
+                    text={text}
+                    onTextChange={handleSetText}
+                    isActive={!!text.length || !!media.length}
+                    onAddMedia={handleAddMedia}
+                />
 
-                    <TextAreaWrapper>
-                        <Textarea
-                            value={text}
-                            onChange={handleSetText}
-                            placeholder="Что у вас нового?"
-                            rows={1}
-                        />
-                    </TextAreaWrapper>
+                {!!media.length && <Slider content={media} />}
 
-                    <DragAndDropUpload onFile={() => console}>
-                        <IconButton icon="pin" onClick={() => console} size={25} />
-                    </DragAndDropUpload>
-                </PreviewCreator>
-
-                {isActive &&
-                    <FooterCreator>
-                        <CreateButton>
-                            Опубликовать
-                        </CreateButton>
-                    </FooterCreator>
-                }
+                <FooterCreator
+                    isActive={!!text.length || !!media.length}
+                    onAddMedia={handleAddMedia}
+                />
             </FormPost>
         </NewPostWrapper>
     );

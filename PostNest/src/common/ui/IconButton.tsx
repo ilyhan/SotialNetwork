@@ -9,6 +9,7 @@ interface IconButtonProps {
     onClick: () => void;
     size?: number;
     iconStyle?: React.CSSProperties;
+    type?: "button" | "reset" | "submit";
 };
 
 const StyleButton = styled('button')<{$size: number}>`
@@ -28,9 +29,9 @@ const StyleIcon = styled(SvgHelper)<{$size: number}>`
     width: ${props=>props.$size}px;
 `;
 
-const IconButton = ({ icon, onClick, size = 20, iconStyle }: IconButtonProps) => {
+const IconButton = ({ icon, onClick, size = 20, iconStyle, type = 'button' }: IconButtonProps) => {
     return (
-        <StyleButton onClick={onClick} $size={size+10}>
+        <StyleButton onClick={onClick} $size={size+12} type={type}>
             <StyleIcon iconName={icon} $size={size} style={iconStyle}/>
         </StyleButton>
     );

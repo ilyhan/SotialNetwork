@@ -49,7 +49,6 @@ export const ContentWrapper = styled('div') <{ $image: string; $translate: numbe
         filter:  blur(10px) brightness(.9) contrast(1.2);
         z-index: 0;
     } 
-
 `;
 
 export const SliderContent = styled('img')`

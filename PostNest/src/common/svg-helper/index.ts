@@ -9,6 +9,9 @@ import savedpost from '@/common/svg-helper/icons/savedpost.svg?react';
 import pin from '@/common/svg-helper/icons/pin.svg?react';
 import search from '@/common/svg-helper/icons/search.svg?react';
 import arrow from '@/common/svg-helper/icons/arrow.svg?react';
+import camera from '@/common/svg-helper/icons/camera.svg?react';
+import video from '@/common/svg-helper/icons/video.svg?react';
+import emoji from '@/common/svg-helper/icons/emoji.svg?react';
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -29,7 +32,10 @@ export type ImageComponentsTypes =
     | 'savedpost'
     | 'pin'
     | 'search'
-    | 'arrow';
+    | 'arrow'
+    | 'camera'
+    | 'video'
+    | 'emoji';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     profile,
@@ -43,4 +49,7 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     pin,
     search,
     arrow,
+    camera,
+    video,
+    emoji,
 };
