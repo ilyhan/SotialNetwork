@@ -6,7 +6,7 @@ import {
     LoginButton,
     Registration,
     Line
-} from "@/modules/login/style";
+} from "@/modules/authorization/login/style";
 import { useState } from "react";
 
 const Login = () => {
@@ -31,7 +31,7 @@ const Login = () => {
 
                 <LoginButton>Далее</LoginButton>
             </LoginForm>
-
+            
             <Line/>
 
             <Registration to="/registration">У вас нет аккаунта?</Registration>

@@ -24,6 +24,7 @@ export const LoginTitle = styled('h2')`
 
 export const LoginButton = styled(Button)`
     ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
+    padding-block: 10px;
 `;
 
 export const Registration = styled(Link)`

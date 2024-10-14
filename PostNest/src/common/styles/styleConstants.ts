@@ -78,8 +78,10 @@ export const borders = {
     smallRadius: "20px",
     defaultRadius: "30px",
     extraSmallRadius: "10px",
+    miniRadius: "7px",
 };
 
 export const shadows = {
     defaultShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.1)",
+    checkBoxShadow: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
 }

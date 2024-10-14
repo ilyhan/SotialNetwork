@@ -1,4 +1,5 @@
-import Login from "@/modules/login/Login";
+import Login from "@/modules/authorization/login/Login";
+import Registration from "@/modules/authorization/registration/Registration";
 import MainPage from "@/modules/user/MainPage";
 import Home from "@/modules/user/home/Home";
 import PrivacyPolicy from "@/modules/user/privacyPolicy/PrivacyPolicy";
@@ -14,7 +15,7 @@ import {
 } from "react-router-dom";
 
 export default function RoutesProvider() {
-  const isAuthorized = true;
+  const isAuthorized = false;
   const authorizedProvider = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -34,9 +35,9 @@ export default function RoutesProvider() {
     createRoutesFromElements(
       <>
         <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<div />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/registration" element={<Registration />} />
         <Route path="/privacy_policy" element={<PrivacyPolicy />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </>
     )
   );
