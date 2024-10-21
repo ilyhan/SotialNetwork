@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import Login from "@/modules/authorization/login/Login";
 import Registration from "@/modules/authorization/registration/Registration";
 import MainPage from "@/modules/user/MainPage";
@@ -15,13 +16,13 @@ import {
 } from "react-router-dom";
 
 export default function RoutesProvider() {
-  const isAuthorized = false;
+  const isAuthorized = useAuth()?.isAuthorized;
   const authorizedProvider = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<MainPage />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/support" element={<Support />} />
         </Route>

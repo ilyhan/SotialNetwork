@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { clampText } from '@/common/styles/mixins';
 import { borders, colors, fonts } from '@/common/styles/styleConstants';
@@ -35,8 +35,11 @@ const SearchInput = ({ onSearch, placeholder = 'Поиск' }: SearchInputProps)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
-        searchDebounce(query);
     };
+
+    useEffect(() => {
+        searchDebounce(query);
+    }, [query])
 
     const handleSearch = (val: string) => {
         if (val.trim()) {
@@ -54,7 +57,7 @@ const SearchInput = ({ onSearch, placeholder = 'Поиск' }: SearchInputProps)
                 onChange={handleChange}
                 placeholder={placeholder}
             />
-            <SvgHelper iconName='search' color={colors.gray}/>
+            <SvgHelper iconName='search' color={colors.gray} />
         </InputWrapper>
     );
 };

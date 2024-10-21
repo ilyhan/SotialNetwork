@@ -17,9 +17,50 @@ import mount from "/images/mountains.jpg"
 import defaultImg from "/images/default.jpg"
 import Post from "@/common/components/post/Post";
 import NewPost from "@/common/components/newpost/NewPost";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
+
+interface IUser {
+    id: number;
+    first_name: string;
+    last_name: string;
+    username: string;
+    avatar?: string;
+}
 
 const Profile = () => {
-    return (
+    const { username } = useParams();
+    const [user, setUser] = useState<IUser>();
+    const { userId } = useAuth();
+
+    useEffect(() => {
+        const getUser = async () => {
+            const res = await fetch(`http://localhost:3001/api/users/${username}`, {
+                credentials: 'include',
+            });
+            const data = await res.json();
+            setUser(data);
+        }
+        getUser();
+    }, []);
+
+    const handleFollow = async () => {
+        const res = await fetch('http://localhost:3001/api/follow', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                followedId: user?.id,
+            })
+        });
+        const data = await res.json();
+        console.log(data);
+    }
+
+    return !!user && (
         <ProfileWrapper>
             <ProfileContentWrapper>
                 <BackgroungImgWrapper>
@@ -31,7 +72,7 @@ const Profile = () => {
                         <ImageWrapper>
                             <ProfileImage src={defaultImg} />
                         </ImageWrapper>
-                        <ProfileName>User Name</ProfileName>
+                        <ProfileName>{user.first_name + " " + user.last_name}</ProfileName>
                     </ProfileMainInfo>
                 </MainInfoWrapper>
 
@@ -57,6 +98,11 @@ const Profile = () => {
                         17
                     </SubscribeInfoBtn>
                 </SubscribeWrapper>
+                {userId !== user.id &&
+                    <button onClick={handleFollow}>
+                        Подписаться
+                    </button>
+                }
             </ProfileContentWrapper>
 
             <NewPost />
@@ -66,7 +112,7 @@ const Profile = () => {
                 name="Ilia"
                 content="Content"
             />
-            
+
             <Post
                 avatar={defaultImg}
                 name="Ilia"

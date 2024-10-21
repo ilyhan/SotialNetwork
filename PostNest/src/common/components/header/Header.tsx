@@ -7,11 +7,20 @@ import SearchInput from "@/common/ui/SearchInput";
 import Notification from "@/common/components/notification/Notification";
 
 const Header = () => {
+    const handleSearch = async (val: string) => {
+        const res = await fetch(`http://localhost:3001/api/search/${val}`, {
+            credentials: 'include',
+        });
+
+        const data = await res.json();
+        console.log(data);
+    };
+
     return (
         <HeaderWrapper>
             <HeaderContent>
                 <Logo />
-                <SearchInput onSearch={(val)=>console.log(val)}/>
+                <SearchInput onSearch={handleSearch} />
                 <Notification />
             </HeaderContent>
         </HeaderWrapper>

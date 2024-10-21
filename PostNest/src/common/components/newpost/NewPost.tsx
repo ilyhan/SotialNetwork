@@ -10,14 +10,36 @@ import PreviewSection from "@/common/components/newpost/components/PreviewSectio
 const NewPost = () => {
     const [text, setText] = useState('');
     const [media, setMedia] = useState<string[]>([]);
+    const [files, setFiles] = useState<File[]>([]);
 
-    const handleAddMedia = (file: File) => {
-        setMedia(prev => [...prev, URL.createObjectURL(file)])
+    const handleAddMedia = async (file: File) => {
+        setMedia(prev => [...prev, URL.createObjectURL(file)]);
+        setFiles(prev => [...prev, file]);
     };
 
     const handleSetText = (val: string) => {
         setText(val);
     };
+
+    const handlePost = async () => {
+        setText('');
+        setMedia([]);
+        setFiles([]);
+
+        const formData = new FormData();
+
+        files.forEach((file) => {
+            formData.append('images', file);
+        });
+
+        formData.append('content', text);
+
+        await fetch('http://localhost:3001/api/newpost', {
+            method: "POST",
+            credentials: 'include',
+            body: formData
+        });
+    }
 
     return (
         <NewPostWrapper>
@@ -34,6 +56,7 @@ const NewPost = () => {
                 <FooterCreator
                     isActive={!!text.length || !!media.length}
                     onAddMedia={handleAddMedia}
+                    onCreate={handlePost}
                 />
             </FormPost>
         </NewPostWrapper>
