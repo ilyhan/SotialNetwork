@@ -1,52 +1,37 @@
 import {
     PostWrapper,
-    PostHeader,
-    PostContent,
-    PostFooter,
-    UserAvatar,
-    UserName,
-    TextContent,
-    TimeCreated,
-    SavedButton
+    SavedButton,
 } from "@/common/components/post/style";
 import IconButton from "@/common/ui/IconButton";
-import React from "react";
-import Slider from "@/common/components/slider/Slider";
+import { IPost } from "@/common/interfaces/posts";
+import HeaderPost from "@/common/components/post/components/HeaderPost";
+import ContentPost from "@/common/components/post/components/ContentPost";
+import FooterPost from "./components/FooterPost";
 
-interface PostProps {
-    name: string;
-    avatar: string;
-    content: string;
-}
-
-const Post = ({ name, avatar, content }: PostProps) => {
+const Post = (post: IPost) => {
     return (
         <PostWrapper>
             <SavedButton>
                 <IconButton icon="savedpost" onClick={() => console} />
             </SavedButton>
 
-            <PostHeader>
-                <UserAvatar src={avatar} />
-                <UserName>{name}</UserName>
-            </PostHeader>
+            <HeaderPost
+                username={post.username}
+                first_name={post.first_name}
+                last_name={post.last_name}
+                avatar={post.avatar}
+            />
 
-            <PostContent>
-                <TextContent>{content.split('\n').map((line, index) => (
-                    <React.Fragment key={index}>
-                        {line}
-                        <br />
-                    </React.Fragment>
-                ))}
-                </TextContent>
+            <ContentPost 
+                content={post.content}
+                media_content={post.media_content}
+            />
 
-                <Slider content={["https://loremflickr.com/620/480/city", "https://loremflickr.com/620/481/city", "https://loremflickr.com/621/481/city"]} />
-            </PostContent>
-
-            <PostFooter>
-                <IconButton icon="favorite" onClick={() => console} size={25} />
-                <TimeCreated>15 минут назад</TimeCreated>
-            </PostFooter>
+            <FooterPost 
+                liked={post.liked}
+                likes_count={post.likes_count}
+                created_at={post.created_at}
+            />
         </PostWrapper>
     );
 };

@@ -1,5 +1,6 @@
 import { clampText, defaultWrapper } from "@/common/styles/mixins";
 import { borders, colors, fonts } from "@/common/styles/styleConstants";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PostWrapper = styled('div')`
@@ -19,6 +20,10 @@ export const SavedButton = styled('div')`
 `;
 
 export const PostHeader = styled('div')`
+    width: fit-content;
+`;
+
+export const LinkToPrifile = styled(Link)`
     display: flex;
     align-items: center;
     gap: 20px;
@@ -53,5 +58,11 @@ export const TextContent = styled('p')`
 
 export const TimeCreated = styled('span')`
     ${clampText(fonts.sizes.smallMobile, fonts.sizes.small)}
-    color: ${colors.gray}
+    color: ${colors.gray};
+`;
+
+export const FavoriteInfo = styled('div')`
+    display: flex;
+    align-items: center;
+    gap: 3px;
 `;

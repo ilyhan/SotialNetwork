@@ -24,7 +24,7 @@ export default function RoutesProvider() {
       <>
         <Route path="/" element={<MainPage />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/support" element={<Support />} />
         </Route>

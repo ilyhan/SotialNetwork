@@ -15,7 +15,6 @@ import {
 } from "@/modules/user/profile/style";
 import mount from "/images/mountains.jpg"
 import defaultImg from "/images/default.jpg"
-import Post from "@/common/components/post/Post";
 import NewPost from "@/common/components/newpost/NewPost";
 
 const Profile = () => {
@@ -61,17 +60,9 @@ const Profile = () => {
 
             <NewPost />
 
-            <Post
-                avatar={defaultImg}
-                name="Ilia"
-                content="Content"
-            />
-            
-            <Post
-                avatar={defaultImg}
-                name="Ilia"
-                content="Content"
-            />
+            {
+                //TODO добавить посты
+            }
         </ProfileWrapper>
     );
 };

@@ -1,32 +1,31 @@
 import NewPost from "@/common/components/newpost/NewPost";
 import Post from "@/common/components/post/Post"
 import { HomeWrapper } from "@/modules/user/home/style";
-import defaultImg from "/images/default.jpg";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
+import useGetPosts from "@/common/hooks/useGetPosts";
 
 const Home = () => {
+    const { data, isError, error } = useGetPosts();
+    const client = useQueryClient();
+
+    useEffect(() => {
+        console.log(error)
+        if (isError) {
+            if (error.message === 'Unauthorized') {
+                client.invalidateQueries({ queryKey: ['auth'] })
+            }
+        }
+    }, [error, isError]);
+
     return (
         <HomeWrapper>
             <NewPost />
-            <Post
-                avatar={defaultImg}
-                name="Ilia"
-                content="Content"
-            />
-            <Post
-                avatar={defaultImg}
-                name="Ilia"
-                content="Content"
-            />
-            <Post
-                avatar={defaultImg}
-                name="Ilia"
-                content="Content"
-            />
-            <Post
-                avatar={defaultImg}
-                name="Ilia"
-                content="Content"
-            />
+            {data?.map(post => (
+                <Post
+                    {...post}
+                />
+            ))}
         </HomeWrapper>
     );
 };
