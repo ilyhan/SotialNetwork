@@ -1,3 +1,4 @@
+import useLogin from "@/common/hooks/useLogin";
 import InputField from "@/common/ui/InpitField"
 import {
     LoginWrapper,
@@ -21,18 +22,27 @@ const Login = () => {
         setName(val);
     };
 
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        mutate({ name, password });
+    }
+
+    const { mutate } = useLogin();
+
     return (
         <LoginWrapper>
             <LoginTitle>Войти в PostNest</LoginTitle>
-            
-            <LoginForm>
+
+            <LoginForm onSubmit={handleSubmit}>
                 <InputField label="Name" value={name} onChange={handleSetName} />
                 <InputField label="Password" value={password} onChange={handleSetPassword} type="password" />
 
-                <LoginButton>Далее</LoginButton>
+                <LoginButton>
+                    Далеe
+                </LoginButton>
             </LoginForm>
-            
-            <Line/>
+
+            <Line />
 
             <Registration to="/registration">У вас нет аккаунта?</Registration>
         </LoginWrapper>

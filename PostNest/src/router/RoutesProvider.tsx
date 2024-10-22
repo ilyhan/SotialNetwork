@@ -1,3 +1,4 @@
+import useRefreshAuth from "@/common/hooks/useRefreshAuth";
 import Login from "@/modules/authorization/login/Login";
 import Registration from "@/modules/authorization/registration/Registration";
 import MainPage from "@/modules/user/MainPage";
@@ -15,7 +16,9 @@ import {
 } from "react-router-dom";
 
 export default function RoutesProvider() {
-  const isAuthorized = false;
+  const { isSuccess, isLoading } = useRefreshAuth();
+
+  const isAuthorized = isSuccess;
   const authorizedProvider = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -43,6 +46,6 @@ export default function RoutesProvider() {
   );
 
   return (
-    <RouterProvider router={isAuthorized ? authorizedProvider : anAuthorizedProvider} />
+    !isLoading && <RouterProvider router={isAuthorized ? authorizedProvider : anAuthorizedProvider} />
   );
 }
