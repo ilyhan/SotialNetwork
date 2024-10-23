@@ -12,27 +12,27 @@ interface IconButtonProps {
     type?: "button" | "reset" | "submit";
 };
 
-const StyleButton = styled('button')<{$size: number}>`
+const StyleButton = styled('button') <{ $size: number }>`
     display: flex;
     align-items: center;
     justify-content: center;
     ${resetButton}
     border-radius: ${borders.circle};
-    height: ${props=>props.$size}px;
-    width: ${props=>props.$size}px;
+    height: ${props => props.$size}px;
+    width: ${props => props.$size}px;
 
     ${hoverActiveBackground()}
 `;
 
-const StyleIcon = styled(SvgHelper)<{$size: number}>`
-    height: ${props=>props.$size}px;
-    width: ${props=>props.$size}px;
+const StyleIcon = styled(SvgHelper) <{ $size: number }>`
+    height: ${props => props.$size}px;
+    width: ${props => props.$size}px;
 `;
 
 const IconButton = ({ icon, onClick, size = 20, iconStyle, type = 'button' }: IconButtonProps) => {
     return (
-        <StyleButton onClick={onClick} $size={size+12} type={type}>
-            <StyleIcon iconName={icon} $size={size} style={iconStyle}/>
+        <StyleButton onClick={onClick} $size={size + 12} type={type}>
+            <StyleIcon iconName={icon} $size={size} style={iconStyle} />
         </StyleButton>
     );
 };

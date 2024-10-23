@@ -9,6 +9,7 @@ import ContentPost from "@/common/components/post/components/ContentPost";
 import FooterPost from "./components/FooterPost";
 
 const Post = (post: IPost) => {
+    console.log(post.id)
     return (
         <PostWrapper>
             <SavedButton>
@@ -28,6 +29,7 @@ const Post = (post: IPost) => {
             />
 
             <FooterPost 
+                postId={post.id}
                 liked={post.liked}
                 likes_count={post.likes_count}
                 created_at={post.created_at}

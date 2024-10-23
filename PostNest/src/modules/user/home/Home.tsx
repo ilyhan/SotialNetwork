@@ -10,7 +10,6 @@ const Home = () => {
     const client = useQueryClient();
 
     useEffect(() => {
-        console.log(error)
         if (isError) {
             if (error.message === 'Unauthorized') {
                 client.invalidateQueries({ queryKey: ['auth'] })
@@ -23,6 +22,7 @@ const Home = () => {
             <NewPost />
             {data?.map(post => (
                 <Post
+                    key={post.id}
                     {...post}
                 />
             ))}
