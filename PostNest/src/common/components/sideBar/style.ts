@@ -40,6 +40,6 @@ export const NavItemLink = styled(NavLink)`
     ${hoverActiveBackground()}
 
     &.active {
-        color: black;
+        color: ${colors.black};
     }
 `;

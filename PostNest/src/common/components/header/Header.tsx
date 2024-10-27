@@ -3,15 +3,15 @@ import {
     HeaderContent
 } from "@/common/components/header/style";
 import Logo from "@/common/components/Logo";
-import SearchInput from "@/common/ui/SearchInput";
 import Notification from "@/common/components/notification/Notification";
+import SiteSearch from "@/common/components/search/SiteSearch";
 
 const Header = () => {
     return (
         <HeaderWrapper>
             <HeaderContent>
                 <Logo />
-                <SearchInput onSearch={(val)=>console.log(val)}/>
+                <SiteSearch />
                 <Notification />
             </HeaderContent>
         </HeaderWrapper>

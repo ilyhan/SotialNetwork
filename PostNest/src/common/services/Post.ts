@@ -1,4 +1,5 @@
 import { IPost } from "@/common/interfaces/posts";
+
 const baseUrl = 'http://localhost:3001/api';
 
 export const getPosts = async (): Promise<IPost[]> => {
@@ -33,6 +34,6 @@ export const setLike = async (post_id: number) => {
         }
         throw new Error('An error occurred: ' + res.status);
     }
-    
+
     return res.json();
 }

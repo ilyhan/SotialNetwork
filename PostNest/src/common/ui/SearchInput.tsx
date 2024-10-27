@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { clampText } from '@/common/styles/mixins';
 import { borders, colors, fonts } from '@/common/styles/styleConstants';
@@ -8,6 +8,8 @@ import { useDebounce } from '@/common/hooks/useDebiunce';
 interface SearchInputProps {
     onSearch: (_: string) => void;
     placeholder?: string;
+    onBlur?: () => void;
+    onFocus?: () => void;
 };
 
 const StyleInput = styled('input')`
@@ -30,13 +32,16 @@ const InputWrapper = styled('div')`
     border-radius: ${borders.extraSmallRadius};
 `;
 
-const SearchInput = ({ onSearch, placeholder = 'Поиск' }: SearchInputProps) => {
+const SearchInput = memo(({ onSearch, placeholder = 'Поиск', onBlur, onFocus }: SearchInputProps) => {
     const [query, setQuery] = useState('');
-
+    console.log('12334')
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
-        searchDebounce(query);
     };
+
+    useEffect(() => {
+        searchDebounce(query);
+    }, [query]);
 
     const handleSearch = (val: string) => {
         if (val.trim()) {
@@ -53,10 +58,12 @@ const SearchInput = ({ onSearch, placeholder = 'Поиск' }: SearchInputProps)
                 value={query}
                 onChange={handleChange}
                 placeholder={placeholder}
+                onBlur={onBlur}
+                onFocus={onFocus}
             />
-            <SvgHelper iconName='search' color={colors.gray}/>
+            <SvgHelper iconName='search' color={colors.gray} />
         </InputWrapper>
     );
-};
+});
 
 export default SearchInput;
