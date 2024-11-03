@@ -36,4 +36,21 @@ export const setLike = async (post_id: number) => {
     }
 
     return res.json();
-}
+};
+
+export const newPost = async (formdata: FormData) =>{
+    const res = await fetch(`${baseUrl}/newpost`, {
+        method: "POST",
+        credentials: 'include',
+        body: formdata,
+    });
+
+    if (!res.ok) {
+        if (res.status === 401) {
+            throw new Error('Unauthorized');
+        }
+        throw new Error('An error occurred: ' + res.status);
+    }
+
+    return res.json();
+};
