@@ -12,7 +12,7 @@ const useLogin = (): UseMutationResult<void, Error, LoginProps> => {
     return useMutation({
         mutationFn: ({name, password}: LoginProps) => login(name, password),
         onSuccess: () => {
-            client.invalidateQueries({ queryKey: ['auth'] })
+            client.invalidateQueries({ queryKey: ['auth'] });
         }
     });
 }

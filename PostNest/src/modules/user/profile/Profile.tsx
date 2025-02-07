@@ -16,8 +16,14 @@ import {
 import mount from "/images/mountains.jpg"
 import defaultImg from "/images/default.jpg"
 import NewPost from "@/common/components/newpost/NewPost";
+import useGetProfile from "@/common/hooks/useGetProfile";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
+    const { username } = useParams();
+    console.log(username);
+    const {data} = useGetProfile(`${username}`);
+    console.log(data)
     return (
         <ProfileWrapper>
             <ProfileContentWrapper>
@@ -28,9 +34,9 @@ const Profile = () => {
                 <MainInfoWrapper>
                     <ProfileMainInfo>
                         <ImageWrapper>
-                            <ProfileImage src={defaultImg} />
+                            <ProfileImage src={data?.avatar ?? defaultImg} />
                         </ImageWrapper>
-                        <ProfileName>User Name</ProfileName>
+                        <ProfileName>{data?.first_name + " " + data?.last_name}</ProfileName>
                     </ProfileMainInfo>
                 </MainInfoWrapper>
 
@@ -43,17 +49,17 @@ const Profile = () => {
                 <SubscribeWrapper>
                     <SubscribeInfoBtn>
                         Подписчики <br />
-                        17
+                        {data?.follower_count ?? 0}
                     </SubscribeInfoBtn>
 
                     <SubscribeInfoBtn>
                         Подписки <br />
-                        17
+                        {data?.following_count ?? 0}
                     </SubscribeInfoBtn>
 
                     <SubscribeInfoBtn>
                         Публикации <br />
-                        17
+                        {data?.posts?.length ?? 0}
                     </SubscribeInfoBtn>
                 </SubscribeWrapper>
             </ProfileContentWrapper>
