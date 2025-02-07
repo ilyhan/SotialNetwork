@@ -19,3 +19,15 @@ export interface IUser {
     background_image?: string;
     posts?: IPost[];
 };
+
+export interface IUserRegistration {
+    first_name: string;
+    last_name: string;
+    username: string;
+    email: string;
+    password: string;
+};
+
+export interface IUserResponse extends IUserRegistration {
+    message?: string;
+}

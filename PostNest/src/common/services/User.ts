@@ -1,4 +1,4 @@
-import { ISearchUser, IUser } from "@/common/interfaces/user";
+import { ISearchUser, IUser, IUserRegistration, IUserResponse } from "@/common/interfaces/user";
 
 const baseUrl = 'http://localhost:3001/api';
 
@@ -28,6 +28,18 @@ export const userProfile = async(username: string): Promise<IUser> => {
         }
         throw new Error('An error occurred: ' + res.status);
     }
+
+    return res.json();
+}
+
+export const registrationUser = async (userData: IUserRegistration): Promise<IUserResponse> => {
+    const res = await fetch(`${baseUrl}/user`, {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
 
     return res.json();
 }

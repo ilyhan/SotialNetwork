@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { borders, colors, fonts, transitions } from '@/common/styles/styleConstants';
 import { clampText } from '@/common/styles/mixins';
-import { memo } from 'react';
+import { InputHTMLAttributes, Ref, forwardRef, useState } from 'react';
+import { FieldError } from 'react-hook-form';
 
-interface InputFieldProps {
+interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  value: string;
   required?: boolean;
   type?: string;
   maxLength?: number;
-  error?: string;
-  onChange: (value: string) => void;
+  error?: FieldError;
+  name?: string;
 };
 
 const InputWrapper = styled.div`
@@ -18,7 +18,7 @@ const InputWrapper = styled.div`
   margin-bottom: 15px;
 `;
 
-const InputStyled = styled('input') <{ $isValid: boolean }>`
+const InputStyled = styled('input') <{ $isValid: boolean}>`
   ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
   color: ${colors.black};
   padding: 10px;
@@ -33,17 +33,17 @@ const InputStyled = styled('input') <{ $isValid: boolean }>`
     outline: none;
   }
 
-  &:focus + label,
-  &:valid + label {
+  &:focus + label {
     top: -7px;
     font-size: ${fonts.sizes.smallMobile}px;
     /* color: ${colors.lightGray}; */
     background-color: ${colors.backgroundGray};
     padding-inline: 3px;
   }
+
 `;
 
-const LabelStyled = styled('label')<{ $isValid: boolean }>`
+const LabelStyled = styled('label') <{ $isValid: boolean, $isEmpty: boolean  }>`
   ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
   position: absolute;
   color: ${props => props.$isValid ? colors.gray : colors.red};
@@ -52,6 +52,14 @@ const LabelStyled = styled('label')<{ $isValid: boolean }>`
   left: 10px;
   top: 10px;
   transition: ${transitions.fastTransition};
+
+  ${props => props.$isEmpty == false && `
+    top: -7px;
+    font-size: ${fonts.sizes.smallMobile}px;
+    /* color: ${colors.lightGray}; */
+    background-color: ${colors.backgroundGray};
+    padding-inline: 3px;
+  `}
 `;
 
 const ErrorWrapper = styled('p')`
@@ -62,35 +70,47 @@ const ErrorWrapper = styled('p')`
   font-size: ${fonts.sizes.extraSmall}px;
 `;
 
-const InputField = memo(({
-  label,
-  value,
-  type = "text",
-  required = true,
-  maxLength,
-  error,
-  onChange,
-}: InputFieldProps) => {
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.value);
-  };
+const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
+  ({
+    label,
+    type = "text",
+    required = false,
+    maxLength,
+    error,
+    onChange,
+    name,
+    ...props
+  }: InputFieldProps, ref: Ref<HTMLInputElement>) => {
+    const [value, setValue] = useState("");
+    const isEmpty = !value.trim();
 
-  return (
-    <InputWrapper>
-      <InputStyled
-        type={type}
-        value={value}
-        required={required}
-        onChange={onInputChange}
-        maxLength={maxLength}
-        $isValid={!error}
-        placeholder=''
-      />
-      <LabelStyled $isValid={!error}>{error ? error : label}</LabelStyled>
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setValue(newValue);
+      if (onChange) {
+        onChange(e); 
+      }
+    };
 
-      {error && <ErrorWrapper>{error}</ErrorWrapper>}
-    </InputWrapper>
-  );
-});
+    return (
+      <InputWrapper>
+        <InputStyled
+          type={type}
+          required={required}
+          maxLength={maxLength}
+          $isValid={!error}
+          placeholder=""
+          ref={ref}
+          name={name}
+          onChange={handleChange}
+          {...props}
+        />
+
+        <LabelStyled $isValid={!error} $isEmpty={isEmpty} >{label}</LabelStyled>
+        {error && <ErrorWrapper>{error.message}</ErrorWrapper>}
+      </InputWrapper>
+    );
+  }
+);
 
 export default InputField;

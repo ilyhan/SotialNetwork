@@ -42,14 +42,15 @@ const CheckboxLabel = styled('label')`
 interface InputCheckboxProps {
     checked: boolean;
     onChecked: () => void;
+    required?: boolean;
 }
 
-const InputCheckbox = ({ checked, onChecked }: InputCheckboxProps) => {
+const InputCheckbox = ({ checked, onChecked, required = false }: InputCheckboxProps) => {
     const id = useId();
 
     return (
         <>
-            <Checkbox type="checkbox" id={id} checked={checked} onChange={onChecked}/>
+            <Checkbox type="checkbox" id={id} checked={checked} onChange={onChecked} required={required}/>
             <CheckboxLabel htmlFor={id} />
         </>
     );

@@ -41,13 +41,13 @@ const Slider = ({ content }: SliderProps) => {
             ))}
             
             {currrent > 0 && isActive &&
-                <ButtonPrev onClick={handlePrev} >
+                <ButtonPrev onClick={handlePrev} type="button">
                     <SvgHelper iconName="arrow" height={21} width={21} color={colors.lightGray} />
                 </ButtonPrev>
             }
 
             {currrent < content.length - 1 && isActive &&
-                <ButtonNext onClick={handleNext}>
+                <ButtonNext onClick={handleNext}  type="button">
                     <SvgHelper iconName="arrow" height={21} width={21} color={colors.lightGray} />
                 </ButtonNext>
             }

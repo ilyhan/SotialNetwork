@@ -8,18 +8,18 @@ import {
     Registration,
     Line
 } from "@/modules/authorization/login/style";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const Login = () => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSetPassword = (val: string) => {
-        setPassword(val);
+    const handleSetPassword = (e: ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
     };
 
-    const handleSetName = (val: string) => {
-        setName(val);
+    const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
