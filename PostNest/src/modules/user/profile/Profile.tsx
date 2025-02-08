@@ -15,15 +15,22 @@ import {
 } from "@/modules/user/profile/style";
 import mount from "/images/mountains.jpg"
 import defaultImg from "/images/default.jpg"
-import NewPost from "@/common/components/newpost/NewPost";
 import useGetProfile from "@/common/hooks/useGetProfile";
 import { useParams } from "react-router-dom";
+import Post from "@/common/components/post/Post";
+import { useEffect } from "react";
 
 const Profile = () => {
     const { username } = useParams();
-    console.log(username);
-    const {data} = useGetProfile(`${username}`);
-    console.log(data)
+    const { data } = useGetProfile(`${username}`);
+
+    useEffect(()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        })
+    }, []);
+
     return (
         <ProfileWrapper>
             <ProfileContentWrapper>
@@ -64,11 +71,14 @@ const Profile = () => {
                 </SubscribeWrapper>
             </ProfileContentWrapper>
 
-            <NewPost />
-
-            {
-                //TODO добавить посты
-            }
+            {data?.posts?.map((post) => (
+                <Post
+                    key={post.id}
+                    {...post}
+                    first_name={data?.username}
+                    last_name=''
+                />
+            ))}
         </ProfileWrapper>
     );
 };

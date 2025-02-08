@@ -22,7 +22,8 @@ export default function RoutesProvider() {
   const authorizedProvider = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<MainPage />}>
+        <Route element={<MainPage />}>
+          <Route path="/" element={<Navigate to="/home" replace />}/>
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/saved" element={<Saved />} />

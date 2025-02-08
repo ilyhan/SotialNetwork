@@ -7,6 +7,7 @@ const useGetPosts = (): UseQueryResult<IPost[]> => {
         queryKey: ['posts'],
         queryFn: getPosts,
         retry: 0,
+        staleTime: 1000 * 60 * 2,
     });
 }
 
