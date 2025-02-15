@@ -62,12 +62,25 @@ export const GlobalStyles = createGlobalStyle`
   html {
     height: 100%;
     scroll-behavior: smooth;
-    /* scrollbar-gutter: stable; */
-  } 
+    scrollbar-gutter: stable;
+  }
+
   body {
     height: 100%;
     line-height: 1.5;
   } 
+  body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  body::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+  }
+  body::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 4px;
+  }
   svg *[fill] {
     fill: currentColor;
   }

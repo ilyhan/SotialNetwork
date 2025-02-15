@@ -13,6 +13,9 @@ import camera from '@/common/svg-helper/icons/camera.svg?react';
 import video from '@/common/svg-helper/icons/video.svg?react';
 import emoji from '@/common/svg-helper/icons/emoji.svg?react';
 import subscribe from '@/common/svg-helper/icons/subscribe.svg?react';
+import unsubscribe from '@/common/svg-helper/icons/unsubscribe.svg?react';
+import quit from '@/common/svg-helper/icons/quit.svg?react';
+import edit from '@/common/svg-helper/icons/edit.svg?react';
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -37,7 +40,10 @@ export type ImageComponentsTypes =
     | 'camera'
     | 'video'
     | 'emoji'
-    | 'subscribe';
+    | 'subscribe'
+    | 'unsubscribe'
+    | 'quit'
+    | 'edit';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     profile,
@@ -55,4 +61,7 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     video,
     emoji,
     subscribe,
+    unsubscribe,
+    quit,
+    edit,
 };

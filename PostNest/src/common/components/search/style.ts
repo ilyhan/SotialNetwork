@@ -57,7 +57,7 @@ export const UserNameWrapper = styled('div')`
     flex-direction: column;
 `;
 
-export const UserName = styled('sapn')`
+export const UserName = styled('span')`
     ${clampText(fonts.sizes.smallMobile, fonts.sizes.small)};
     color: ${colors.gray};
 `;

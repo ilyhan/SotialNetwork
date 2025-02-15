@@ -24,8 +24,8 @@ const SideNav = () => {
                 <NavList>
                     <NavItem link={`/profile/${data?.user}`} icon="profile" title="Моя страница" />
                     <NavItem link="/home" icon="home" title="Главная" />
-                    <NavItem link="/saved" icon="saved" title="Сохраненное" />
-                    <NavItem link="/settings" icon="settings" title="Настройки" />
+                    <NavItem link="/saved" icon="favorite" title="Избранное" />
+                    {/* <NavItem link="/settings" icon="settings" title="Настройки" /> */}
                     <NavItem link="/support" icon="help" title="Поддержка" />
                 </NavList>
             </SideNavWrapper>

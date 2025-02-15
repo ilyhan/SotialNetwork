@@ -6,6 +6,8 @@ const useGetProfile = (username: string): UseQueryResult<IUser> => {
     return useQuery({
         queryKey: ['profile', `${username}`],
         queryFn: () => userProfile(username),
+        staleTime: 1000 * 60 * 10,
+        gcTime: 1000 * 60 * 60,
     });
 }
 

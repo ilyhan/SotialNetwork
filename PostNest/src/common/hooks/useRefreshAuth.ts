@@ -6,6 +6,7 @@ const useRefreshAuth = (): UseQueryResult => {
         queryFn: refresh,
         queryKey: ['auth'],
         staleTime: 1000 * 60 * 60,
+        gcTime: 1000 * 60 * 60,
     });
 }
 

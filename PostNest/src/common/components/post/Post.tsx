@@ -1,21 +1,15 @@
 import {
     PostWrapper,
-    SavedButton,
 } from "@/common/components/post/style";
-import IconButton from "@/common/ui/IconButton";
 import { IPost } from "@/common/interfaces/posts";
 import HeaderPost from "@/common/components/post/components/HeaderPost";
 import ContentPost from "@/common/components/post/components/ContentPost";
 import FooterPost from "./components/FooterPost";
 
 const Post = (post: IPost) => {
-    console.log(post.id)
+
     return (
         <PostWrapper>
-            <SavedButton>
-                <IconButton icon="savedpost" onClick={() => console} />
-            </SavedButton>
-
             <HeaderPost
                 username={post.username}
                 first_name={post.first_name}

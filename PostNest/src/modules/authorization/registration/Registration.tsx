@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
-    const { mutate, data} = useRegistration();
+    const { mutate, data, isPending} = useRegistration();
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Registration = () => {
     };
 
     useEffect(()=>{
-        if(Array.isArray(data)){
+        if(data && data.message == undefined){
             navigate('/login')
         }
     }, [data])
@@ -104,11 +104,12 @@ const Registration = () => {
                 </PrivacyAccept>
 
                 <RegistrationBtn>
-                    Зарегестрироваться
+                    Зарегистрироваться
                 </RegistrationBtn>
             </RegistrationForm>
-            
+
             {data && data.message && <p>{data.message}</p>}
+            {isPending && <p>Loading...</p>}
         </RegistrationWrapper>
     );
 };

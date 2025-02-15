@@ -1,4 +1,4 @@
-import { clampText, defaultWrapper, hoverActive, resetButton } from "@/common/styles/mixins";
+import { clampText, defaultWrapper } from "@/common/styles/mixins";
 import { borders, colors, fonts } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
@@ -26,6 +26,7 @@ export const BackgroungImg = styled('img')`
     position: absolute;
     top: -40%;
     object-fit: cover;
+    width: 100%;
 `;
 
 export const ProfileMainInfo = styled('div')`
@@ -46,7 +47,8 @@ export const ImageWrapper = styled('div')`
 `;
 
 export const ProfileImage = styled('img')`
-
+    width: 100%;
+    height: 100%;
 `;
 
 export const ProfileName = styled('h2')`
@@ -55,6 +57,8 @@ export const ProfileName = styled('h2')`
 `;
 
 export const MainInfoWrapper = styled('div')`
+    display: flex;
+    justify-content: end;
     position: relative;
     height: 70px;
 `;
@@ -66,16 +70,4 @@ export const ProfileDescription = styled('div')`
 export const DescriptionText = styled('p')`
     ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
     word-wrap: break-word;
-`;
-
-export const SubscribeWrapper = styled('div')`
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-`;
-
-export const SubscribeInfoBtn = styled('button')`
-    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
-    ${resetButton}
-    ${hoverActive}
 `;

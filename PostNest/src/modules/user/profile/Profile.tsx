@@ -10,76 +10,130 @@ import {
     MainInfoWrapper,
     ProfileDescription,
     DescriptionText,
-    SubscribeWrapper,
-    SubscribeInfoBtn
 } from "@/modules/user/profile/style";
 import mount from "/images/mountains.jpg"
 import defaultImg from "/images/default.jpg"
 import useGetProfile from "@/common/hooks/useGetProfile";
 import { useParams } from "react-router-dom";
 import Post from "@/common/components/post/Post";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import IconButton from "@/common/ui/IconButton";
+import useFollow from "@/common/hooks/useFollow";
+import useUpdateBackground from "@/common/hooks/useUpdateBackground";
+import DragAndDropUpload from "@/common/helper/DragAndDropUpload";
+import useUpdateAvatar from "@/common/hooks/useUpdateAvatar";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import useGetFollowing from "@/common/hooks/useGetFollowing";
+import Subscribe from "./components/subscribe/Subscribe";
+
+interface AuthData {
+    id: number;
+    user: string;
+};
 
 const Profile = () => {
+    const { data: authData, isLoading }: UseQueryResult<AuthData, Error> = useQuery({
+        queryKey: ['auth'],
+    });
+    const [enter, setEnter] = useState(false);
     const { username } = useParams();
-    const { data } = useGetProfile(`${username}`);
+    const { data, refetch, isLoading: loading } = useGetProfile(`${username}`);
+    const { mutate, isSuccess } = useFollow();
+    const { mutate: update, isSuccess: issuccess } = useUpdateBackground();
+    const { mutate: updateAva, isSuccess: is } = useUpdateAvatar();
+    const { } = useGetFollowing(data?.id ?? 7);
+    const refInt = useRef<HTMLInputElement | null>(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'instant',
         })
     }, []);
 
+    useEffect(() => {
+        if (isSuccess || issuccess || is) {
+            refetch();
+        }
+    }, [isSuccess, issuccess, is])
+
+    const handleFollow = () => {
+        mutate(data!.id);
+    };
+
+    const handleSetBackground = () => {
+        if (refInt) {
+            refInt.current?.click();
+        }
+    };
+
+    const handleAddFile = (e: ChangeEvent<HTMLInputElement>) => {
+        const newFile = e.target.files![0] as File;
+        const form = new FormData();
+        form.append('images', newFile);
+        update(form);
+    };
+
+    const handleSetAvater = (file: File) => {
+        const form = new FormData();
+        form.append('images', file);
+        updateAva(form);
+    };
+    console.log(loading);
     return (
-        <ProfileWrapper>
-            <ProfileContentWrapper>
-                <BackgroungImgWrapper>
-                    <BackgroungImg src={mount} />
-                </BackgroungImgWrapper>
+        isLoading || loading || data == undefined
+            ? <p>loading...</p>
+            : <ProfileWrapper>
+                <input hidden type="file" ref={refInt} onChange={handleAddFile} />
+                <ProfileContentWrapper>
+                    <BackgroungImgWrapper>
+                        <BackgroungImg src={data?.background_image || mount} />
+                        {authData?.user === username && <IconButton icon="edit" onClick={handleSetBackground} style={{ position: "absolute", zIndex: 122, top: '20px', right: '20px' }} />}
+                    </BackgroungImgWrapper>
 
-                <MainInfoWrapper>
-                    <ProfileMainInfo>
-                        <ImageWrapper>
-                            <ProfileImage src={data?.avatar ?? defaultImg} />
-                        </ImageWrapper>
-                        <ProfileName>{data?.first_name + " " + data?.last_name}</ProfileName>
-                    </ProfileMainInfo>
-                </MainInfoWrapper>
+                    <MainInfoWrapper>
+                        <ProfileMainInfo>
+                            <ImageWrapper
+                                onMouseEnter={() => setEnter(true)}
+                                onMouseLeave={() => setEnter(false)}>
+                                <ProfileImage src={data?.avatar || defaultImg} />
 
-                <ProfileDescription>
-                    <DescriptionText>
-                        Описание — композиционная форма, которую используют в литературоведении и лингвистике для подробной характеристики предметов или явлений.
-                    </DescriptionText>
-                </ProfileDescription>
+                                {authData?.user === username && enter && < DragAndDropUpload onFile={handleSetAvater} multiple={false}>
+                                    <IconButton icon="edit" style={{ position: 'absolute', top: '35px', left: '35px', background: 'grey' }} onClick={() => console} />
+                                </DragAndDropUpload>
+                                }
+                            </ImageWrapper>
+                            <ProfileName>{data?.first_name + " " + data?.last_name}</ProfileName>
+                            {authData?.user !== username && <IconButton icon={data?.is_following ? 'unsubscribe' : 'subscribe'} onClick={handleFollow} style={{ marginBottom: '9px' }} />}
+                        </ProfileMainInfo>
+                    </MainInfoWrapper>
 
-                <SubscribeWrapper>
-                    <SubscribeInfoBtn>
-                        Подписчики <br />
-                        {data?.follower_count ?? 0}
-                    </SubscribeInfoBtn>
+                    <ProfileDescription>
+                        <DescriptionText>
+                            Описание — композиционная форма, которую используют в литературоведении и лингвистике для подробной характеристики предметов или явлений.
+                        </DescriptionText>
+                    </ProfileDescription>
 
-                    <SubscribeInfoBtn>
-                        Подписки <br />
-                        {data?.following_count ?? 0}
-                    </SubscribeInfoBtn>
+                    <Subscribe
+                        id={data.id}
+                        follower={data.following_count}
+                        following={data.following_count}
+                        posts={data?.posts?.length}
+                    />
+                </ProfileContentWrapper>
 
-                    <SubscribeInfoBtn>
-                        Публикации <br />
-                        {data?.posts?.length ?? 0}
-                    </SubscribeInfoBtn>
-                </SubscribeWrapper>
-            </ProfileContentWrapper>
+                {
+                    data?.posts?.map((post) => (
+                        <Post
+                            key={post.id}
+                            {...post}
+                            first_name={data?.username}
+                            last_name=''
+                        />
+                    ))
+                }
 
-            {data?.posts?.map((post) => (
-                <Post
-                    key={post.id}
-                    {...post}
-                    first_name={data?.username}
-                    last_name=''
-                />
-            ))}
-        </ProfileWrapper>
+            </ProfileWrapper >
     );
 };
 

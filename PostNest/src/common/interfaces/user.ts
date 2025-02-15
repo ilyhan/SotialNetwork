@@ -9,6 +9,7 @@ export interface ISearchUser {
 };
 
 export interface IUser {
+    id: number;
     first_name: string;
     last_name: string;
     username: string;
@@ -30,4 +31,13 @@ export interface IUserRegistration {
 
 export interface IUserResponse extends IUserRegistration {
     message?: string;
+};
+
+export interface IUserLoginResponse {
+    message?: string;
+}
+
+export interface ILogin {
+    name: string;
+    password: string;
 }

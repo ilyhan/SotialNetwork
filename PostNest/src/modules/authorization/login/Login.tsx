@@ -1,4 +1,5 @@
 import useLogin from "@/common/hooks/useLogin";
+import { ILogin } from "@/common/interfaces/user";
 import InputField from "@/common/ui/InpitField"
 import {
     LoginWrapper,
@@ -8,38 +9,49 @@ import {
     Registration,
     Line
 } from "@/modules/authorization/login/style";
-import { ChangeEvent, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleSetPassword = (e: ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
+    const submitForm = (data: ILogin) => {
+        mutate(data);
     };
 
-    const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
-    };
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm<ILogin>();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        mutate({ name, password });
-    }
-
-    const { mutate } = useLogin();
+    const { mutate, isPending } = useLogin();
 
     return (
         <LoginWrapper>
             <LoginTitle>Войти в PostNest</LoginTitle>
 
-            <LoginForm onSubmit={handleSubmit}>
-                <InputField label="Name" value={name} onChange={handleSetName} />
-                <InputField label="Password" value={password} onChange={handleSetPassword} type="password" />
+            <LoginForm onSubmit={handleSubmit(submitForm)}>
+                <InputField
+                    {...register('name', {
+                        required: { value: true, message: "Введите ваш ник" },
+                    })}
+                    error={errors.name}
+                    label="Ник"
+                    name="name"
+                />
+                <InputField
+                    {...register('password', {
+                        required: { value: true, message: "Введите ваш пароль" },
+                    })}
+                    error={errors.password}
+                    label="Пароль"
+                    name="password"
+                    type="password"
+                />
 
                 <LoginButton>
                     Далеe
                 </LoginButton>
+
+                {isPending && <p>Loading...</p>}
             </LoginForm>
 
             <Line />
