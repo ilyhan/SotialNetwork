@@ -1,20 +1,26 @@
-import SearchItem from "@/common/components/search/SearchItem";
-import useGetFollowers from "@/common/hooks/useGetFollowers";
+import useGetFollowing from "@/common/hooks/useGetFollowing";
+import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
+import { UserList, UserListWrapper } from "@/modules/user/profile/components/modal/style";
+import UserLink from "@/modules/user/profile/components/userLink/UserLink";
 
 interface IFollowingModalProps {
     id: number;
 };
 
 const FollowingModal = ({ id }: IFollowingModalProps) => {
-    const { data, isLoading } = useGetFollowers(id);
+    const { data, isLoading } = useGetFollowing(id);
 
     return (
-        isLoading
-            ? <p>Loading...</p>
-            : data?.map((item) => (
-                <SearchItem key={item.id} {...item} />
-            ))
-
+        <UserListWrapper>
+            {isLoading
+                ? <Loader />
+                : <UserList>
+                    {data?.map((item) => (
+                        <UserLink key={item.id} {...item} />
+                    ))}
+                </UserList>
+            }
+        </UserListWrapper >
     )
 };
 

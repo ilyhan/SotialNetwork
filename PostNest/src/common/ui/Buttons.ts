@@ -7,9 +7,11 @@ export const Button = styled('button')`
     background-color: ${colors.black};
     color: ${colors.white};
     border-radius: ${borders.extraSmallRadius};
-    padding: 7px 10px;
+    padding: 9px 15px;
     text-align: center;
     width: 100%;
 
-    ${hoverActiveMove}
+    &:not(:disabled){
+        ${hoverActiveMove}
+    }
 `;

@@ -1,5 +1,5 @@
-// const baseUrl = 'http://localhost:3001/api';
-const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
+const baseUrl = 'http://localhost:3001/api';
+// const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const refresh = async () => {
     const res = await fetch(`${baseUrl}/refresh`, {

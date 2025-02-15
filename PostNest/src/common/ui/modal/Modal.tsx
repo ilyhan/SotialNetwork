@@ -23,8 +23,10 @@ const Modal = ({ isOpen, children, onClose, withCloseIcon = true }: IModalProps)
 
     useEffect(() => {
         if (isOpen) {
+            document.body.style.overflow = 'hidden';
             setIsVisible(true);
         } else {
+            document.body.style.overflow = 'auto';
             setIsVisible(false);
         }
     }, [isOpen]);
@@ -46,7 +48,7 @@ const Modal = ({ isOpen, children, onClose, withCloseIcon = true }: IModalProps)
                         className="modal__close-btn"
                         onClick={closeModal}
                     >
-                        <SvgHelper iconName="pin" width={18} height={18}/>
+                        <SvgHelper iconName="close" width={18} height={18}/>
                     </button>
                 )}
                 {children}

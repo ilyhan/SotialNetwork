@@ -13,6 +13,15 @@ interface ISubscribeProps {
 
 const Subscribe = ({ id, following, follower, posts }: ISubscribeProps) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isFollowingOpen, setIsFollowingOpen] = useState(false);
+
+    const handleFollowingOpen = ()=> {
+        setIsFollowingOpen(true);
+    };
+
+    const handleFollowingClose = ()=> {
+        setIsFollowingOpen(false);
+    };
 
     const handleClose = () => {
         setIsOpen(false);
@@ -30,7 +39,7 @@ const Subscribe = ({ id, following, follower, posts }: ISubscribeProps) => {
                     {follower ?? 0}
                 </SubscribeInfoBtn>
 
-                <SubscribeInfoBtn>
+                <SubscribeInfoBtn onClick={handleFollowingOpen}>
                     Подписки <br />
                     {following ?? 0}
                 </SubscribeInfoBtn>
@@ -45,7 +54,7 @@ const Subscribe = ({ id, following, follower, posts }: ISubscribeProps) => {
                 <FollowerModal id={id} />
             </Modal>
 
-            <Modal isOpen={isOpen} onClose={handleClose}>
+            <Modal isOpen={isFollowingOpen} onClose={handleFollowingClose}>
                 <FollowingModal id={id} />
             </Modal>
         </>

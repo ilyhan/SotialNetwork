@@ -1,6 +1,7 @@
 import useLogin from "@/common/hooks/useLogin";
 import { ILogin } from "@/common/interfaces/user";
 import InputField from "@/common/ui/InpitField"
+import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
 import {
     LoginWrapper,
     LoginForm,
@@ -51,7 +52,7 @@ const Login = () => {
                     Далеe
                 </LoginButton>
 
-                {isPending && <p>Loading...</p>}
+                {isPending && <Loader style={{margin: '0px 50%', translate: '-50%'}}/>}
             </LoginForm>
 
             <Line />

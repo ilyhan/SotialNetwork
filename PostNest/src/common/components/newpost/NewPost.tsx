@@ -13,7 +13,7 @@ const NewPost = () => {
     const [media, setMedia] = useState<string[]>([]);
     const [files, setFiles] = useState<File[]>([]);
 
-    const { mutate: create, isSuccess } = useCreatePost();
+    const { mutate: create, isSuccess, isPending } = useCreatePost();
 
     useEffect(()=>{
         if(isSuccess) {
@@ -61,6 +61,7 @@ const NewPost = () => {
                 <FooterCreator
                     isActive={!!text.length || !!media.length}
                     onAddMedia={handleAddMedia}
+                    isPending={isPending}
                 />
             </FormPost>
         </NewPostWrapper>

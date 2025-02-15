@@ -54,6 +54,11 @@ export const FooterCreatorWrapper = styled('div')  <{ $isActive: boolean }>`
 
 export const CreateButton = styled(Button)`
     width: fit-content;
+
+    &:disabled {
+        cursor: default;
+        background-color: ${colors.darkAngled};
+    }
 `;
 
 export const UploadWrapper = styled('div')`

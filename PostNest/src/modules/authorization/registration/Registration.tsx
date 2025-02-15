@@ -2,6 +2,7 @@ import { useRegistration } from "@/common/hooks/useRegistration";
 import { IUserRegistration } from "@/common/interfaces/user";
 import InputField from "@/common/ui/InpitField";
 import InputCheckbox from "@/common/ui/InputCheckbox";
+import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
 import {
     RegistrationWrapper,
     RegistrationForm,
@@ -109,7 +110,7 @@ const Registration = () => {
             </RegistrationForm>
 
             {data && data.message && <p>{data.message}</p>}
-            {isPending && <p>Loading...</p>}
+            {isPending && <Loader style={{margin: '0px 50%', translate: '-50%'}}/>}
         </RegistrationWrapper>
     );
 };

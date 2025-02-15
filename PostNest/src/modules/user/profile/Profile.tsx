@@ -23,8 +23,8 @@ import useUpdateBackground from "@/common/hooks/useUpdateBackground";
 import DragAndDropUpload from "@/common/helper/DragAndDropUpload";
 import useUpdateAvatar from "@/common/hooks/useUpdateAvatar";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import useGetFollowing from "@/common/hooks/useGetFollowing";
 import Subscribe from "./components/subscribe/Subscribe";
+import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
 
 interface AuthData {
     id: number;
@@ -41,7 +41,6 @@ const Profile = () => {
     const { mutate, isSuccess } = useFollow();
     const { mutate: update, isSuccess: issuccess } = useUpdateBackground();
     const { mutate: updateAva, isSuccess: is } = useUpdateAvatar();
-    const { } = useGetFollowing(data?.id ?? 7);
     const refInt = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
@@ -82,13 +81,13 @@ const Profile = () => {
     console.log(loading);
     return (
         isLoading || loading || data == undefined
-            ? <p>loading...</p>
+            ? <Loader />
             : <ProfileWrapper>
                 <input hidden type="file" ref={refInt} onChange={handleAddFile} />
                 <ProfileContentWrapper>
                     <BackgroungImgWrapper>
                         <BackgroungImg src={data?.background_image || mount} />
-                        {authData?.user === username && <IconButton icon="edit" onClick={handleSetBackground} style={{ position: "absolute", zIndex: 122, top: '20px', right: '20px' }} />}
+                        {authData?.user === username && <IconButton icon="edit" onClick={handleSetBackground} style={{ position: "absolute", zIndex: 5, top: '20px', right: '20px' }} />}
                     </BackgroungImgWrapper>
 
                     <MainInfoWrapper>
@@ -116,7 +115,7 @@ const Profile = () => {
 
                     <Subscribe
                         id={data.id}
-                        follower={data.following_count}
+                        follower={data.follower_count}
                         following={data.following_count}
                         posts={data?.posts?.length}
                     />

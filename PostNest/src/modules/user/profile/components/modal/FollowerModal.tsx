@@ -1,5 +1,7 @@
-import SearchItem from "@/common/components/search/SearchItem";
 import useGetFollowers from "@/common/hooks/useGetFollowers";
+import UserLink from "@/modules/user/profile/components/userLink/UserLink";
+import { UserList, UserListWrapper } from "@/modules/user/profile/components/modal/style";
+import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
 
 interface IFollowerModalProps {
     id: number;
@@ -9,12 +11,16 @@ const FollowerModal = ({ id }: IFollowerModalProps) => {
     const { data, isLoading } = useGetFollowers(id);
 
     return (
-        isLoading
-            ? <p>Loading...</p>
-            : data?.map((item) => (
-                <SearchItem key={item.id} {...item} />
-            ))
-
+        <UserListWrapper>
+            {isLoading
+                ? <Loader />
+                : <UserList>
+                    {data?.map((item) => (
+                        <UserLink key={item.id} {...item} />
+                    ))}
+                </UserList>
+            }
+        </UserListWrapper >
     )
 };
 
