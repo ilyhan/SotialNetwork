@@ -6,7 +6,6 @@ import styled from "styled-components";
 export const NewPostWrapper = styled('div')`
     ${defaultWrapper}
     padding: 15px 25px;
-    overflow: hidden;
 `;
 
 export const FormPost = styled('form')`
@@ -22,6 +21,7 @@ export const UserAvatar = styled('img')`
 `;
 
 export const PreviewCreator = styled('div')`
+    position: relative;
     display: grid;
     grid-template-columns: 50px auto 70px;
     align-items: center;
@@ -68,6 +68,15 @@ export const UploadWrapper = styled('div')`
 `;
 
 export const ActionsWrapper = styled('div')`
+    position: relative;
     width: fit-content;
     justify-self: end;
+`;
+
+export const PickerWrapper = styled('div')`
+    position: absolute;
+    padding-top: 10px;
+    top: 30px;
+    right: -25px;
+    z-index: 5;
 `;

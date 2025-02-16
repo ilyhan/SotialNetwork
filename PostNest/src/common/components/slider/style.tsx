@@ -82,7 +82,7 @@ export const ButtonNext = styled('button')`
 
     @keyframes showsArrow {
         from{
-            opacity: .2;
+            opacity: .3;
         }
         to{
             opacity: 1;

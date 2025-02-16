@@ -9,19 +9,19 @@ import PreviewSection from "@/common/components/newpost/components/PreviewSectio
 import useCreatePost from "@/common/hooks/useCreatePost";
 
 const NewPost = () => {
-    const [text, setText] = useState('');
+    const [text, setText] = useState<string>('');
     const [media, setMedia] = useState<string[]>([]);
     const [files, setFiles] = useState<File[]>([]);
 
     const { mutate: create, isSuccess, isPending } = useCreatePost();
 
-    useEffect(()=>{
-        if(isSuccess) {
+    useEffect(() => {
+        if (isSuccess) {
             setText('');
             setMedia([]);
             setFiles([]);
         }
-    }, [isSuccess])
+    }, [isSuccess]);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -38,12 +38,17 @@ const NewPost = () => {
     };
 
     const handleAddMedia = (file: File) => {
-        setMedia(prev => [...prev, URL.createObjectURL(file)]);
-        setFiles(prev=>[...prev, file]);
+        setMedia(prev => prev.length < 5 ? [...prev, URL.createObjectURL(file)] : prev);
+        setFiles(prev => prev.length < 5 ? [...prev, file] : prev);
     };
 
     const handleSetText = (val: string) => {
         setText(val);
+    };
+
+    const handleDelete = (index: number) => {
+        setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+        setMedia((prevMedia) => prevMedia.filter((_, i) => i !== index));
     };
 
     return (
@@ -56,7 +61,7 @@ const NewPost = () => {
                     onAddMedia={handleAddMedia}
                 />
 
-                {!!media.length && <Slider content={media} />}
+                {!!media.length && <Slider content={media} onEdit={handleDelete} />}
 
                 <FooterCreator
                     isActive={!!text.length || !!media.length}

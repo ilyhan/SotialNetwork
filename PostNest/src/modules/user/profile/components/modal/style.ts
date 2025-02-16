@@ -2,8 +2,14 @@ import styled from "styled-components";
 
 export const UserListWrapper = styled('div')`
     padding-block: 35px 15px;
-    min-width: 200px;
-    min-height: 80px;
+    width: 360px;
+    height: fit-content;
+`;
+
+export const LoaderWrapper = styled('div')`
+    height: 70px;
+    display: flex; 
+    justify-content: center;
 `;
 
 export const UserList = styled('ul')`

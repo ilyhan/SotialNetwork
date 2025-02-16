@@ -18,6 +18,7 @@ const useLikePost = (): UseMutationResult<void, Error, number> => {
                 const likedPost = client.getQueryData<IPost[]>(['posts'])?.find(item => item.id == data.post_id);
                 
                 client.setQueryData<IPost[]>(['posts', 'favorite'], (old: IPost[] | undefined) => {
+                    if(old == undefined) return old;
                     if (old) {
                         return [likedPost, ...old];
                     }

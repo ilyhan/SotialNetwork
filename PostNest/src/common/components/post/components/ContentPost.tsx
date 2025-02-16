@@ -12,8 +12,7 @@ const ContentPost = ({ content, media_content }: ContentPostProps) => {
         <PostContent>
             <TextContent>{content?.split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                    {line}
-                    <br />
+                    {line.trim().length != 0 && (<>{line} <br /></>)}
                 </React.Fragment>
             ))}
             </TextContent>

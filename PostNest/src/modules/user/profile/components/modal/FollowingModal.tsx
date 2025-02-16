@@ -1,6 +1,6 @@
 import useGetFollowing from "@/common/hooks/useGetFollowing";
 import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
-import { UserList, UserListWrapper } from "@/modules/user/profile/components/modal/style";
+import { LoaderWrapper, UserList, UserListWrapper } from "@/modules/user/profile/components/modal/style";
 import UserLink from "@/modules/user/profile/components/userLink/UserLink";
 
 interface IFollowingModalProps {
@@ -13,7 +13,7 @@ const FollowingModal = ({ id }: IFollowingModalProps) => {
     return (
         <UserListWrapper>
             {isLoading
-                ? <Loader />
+                ? <LoaderWrapper><Loader /></LoaderWrapper>
                 : <UserList>
                     {data?.map((item) => (
                         <UserLink key={item.id} {...item} />

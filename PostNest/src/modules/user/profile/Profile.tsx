@@ -24,7 +24,8 @@ import DragAndDropUpload from "@/common/helper/DragAndDropUpload";
 import useUpdateAvatar from "@/common/hooks/useUpdateAvatar";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import Subscribe from "./components/subscribe/Subscribe";
-import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
+import PostLoader from "@/common/ui/loaders/postLoader/PostLoader";
+import UserLoader from "@/common/ui/loaders/userLoader/UserLoader";
 
 interface AuthData {
     id: number;
@@ -81,9 +82,12 @@ const Profile = () => {
     console.log(loading);
     return (
         isLoading || loading || data == undefined
-            ? <Loader />
+            ? <ProfileWrapper>
+                <UserLoader/>
+                {Array(5).fill('').map(() => <PostLoader />)}
+            </ProfileWrapper>
             : <ProfileWrapper>
-                <input hidden type="file" ref={refInt} onChange={handleAddFile} />
+                <input hidden type="file" ref={refInt} onChange={handleAddFile} accept=".jpg, .jpeg, .png" />
                 <ProfileContentWrapper>
                     <BackgroungImgWrapper>
                         <BackgroungImg src={data?.background_image || mount} />
@@ -97,7 +101,7 @@ const Profile = () => {
                                 onMouseLeave={() => setEnter(false)}>
                                 <ProfileImage src={data?.avatar || defaultImg} />
 
-                                {authData?.user === username && enter && < DragAndDropUpload onFile={handleSetAvater} multiple={false}>
+                                {authData?.user === username && enter && < DragAndDropUpload onFile={handleSetAvater} multiple={false} accept=".jpg, .jpeg, .png">
                                     <IconButton icon="edit" style={{ position: 'absolute', top: '35px', left: '35px', background: 'grey' }} onClick={() => console} />
                                 </DragAndDropUpload>
                                 }

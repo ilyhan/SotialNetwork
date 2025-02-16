@@ -1,6 +1,6 @@
 import useGetFollowers from "@/common/hooks/useGetFollowers";
 import UserLink from "@/modules/user/profile/components/userLink/UserLink";
-import { UserList, UserListWrapper } from "@/modules/user/profile/components/modal/style";
+import { LoaderWrapper, UserList, UserListWrapper } from "@/modules/user/profile/components/modal/style";
 import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
 
 interface IFollowerModalProps {
@@ -13,7 +13,7 @@ const FollowerModal = ({ id }: IFollowerModalProps) => {
     return (
         <UserListWrapper>
             {isLoading
-                ? <Loader />
+                ? <LoaderWrapper><Loader /></LoaderWrapper>
                 : <UserList>
                     {data?.map((item) => (
                         <UserLink key={item.id} {...item} />

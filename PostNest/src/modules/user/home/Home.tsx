@@ -4,9 +4,10 @@ import { HomeWrapper } from "@/modules/user/home/style";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import useGetPosts from "@/common/hooks/useGetPosts";
+import PostLoader from "@/common/ui/loaders/postLoader/PostLoader";
 
 const Home = () => {
-    const { data, isError, error } = useGetPosts();
+    const { data, isError, error, isLoading } = useGetPosts();
     const client = useQueryClient();
 
     useEffect(() => {
@@ -20,12 +21,14 @@ const Home = () => {
     return (
         <HomeWrapper>
             <NewPost />
-            {data?.map(post => (
-                <Post
-                    key={post.id}
-                    {...post}
-                />
-            ))}
+            {isLoading
+                ? Array(10).fill('').map(()=><PostLoader/>)
+                : data?.map(post => (
+                    <Post
+                        key={post.id}
+                        {...post}
+                    />
+                ))}
         </HomeWrapper>
     );
 };

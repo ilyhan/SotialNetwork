@@ -1,6 +1,6 @@
 import Post from "@/common/components/post/Post";
 import useGetFavoritePosts from "@/common/hooks/useGetFavoritePosts";
-import Loader from "@/common/ui/loaders/defaultLoader/DefaultLoader";
+import PostLoader from "@/common/ui/loaders/postLoader/PostLoader";
 import { PostsWrapper, SavedWrapper } from "@/modules/user/saved/style";
 
 const Saved = () => {
@@ -8,7 +8,7 @@ const Saved = () => {
 
     return (
         isLoading
-            ? <Loader />
+            ? <PostsWrapper>{Array(10).fill('').map(()=><PostLoader/>)}</PostsWrapper>
             : <SavedWrapper>
                 <PostsWrapper>
                     {

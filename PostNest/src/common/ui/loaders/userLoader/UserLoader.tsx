@@ -1,14 +1,34 @@
-import { CSSProperties } from 'react';
-import './style.css';
+import { UserLoaderBackgroungImg, UserLoaderContentWrapper, UserLoaderDescription, UserLoaderDescriptionText, UserLoaderImage, UserLoaderImageWrapper, UserLoaderImgWrapper, UserLoaderMainInfo, UserLoaderMainInfoWrapper, UserLoaderName, UserLoaderSubscribeInfoBtn, UserLoaderSubscribeWrapper, UserLoaderWrapper } from "./style";
 
-interface IUserLoaderProps {
-    style?: CSSProperties;
-};
-
-//TODO доделать для профиля загрузку
-const UserLoader = ({ style }: IUserLoaderProps) => {
+const UserLoader = () => {
     return (
-        <span className="loader" style={style}></span>
+        <UserLoaderWrapper>
+            <UserLoaderContentWrapper>
+                <UserLoaderImgWrapper>
+                    <UserLoaderBackgroungImg />
+                </UserLoaderImgWrapper>
+
+                <UserLoaderMainInfoWrapper>
+                    <UserLoaderMainInfo>
+                        <UserLoaderImageWrapper>
+                            <UserLoaderImage />
+                        </UserLoaderImageWrapper>
+
+                        <UserLoaderName />
+                    </UserLoaderMainInfo>
+                </UserLoaderMainInfoWrapper>
+
+                <UserLoaderDescription>
+                    <UserLoaderDescriptionText />
+                </UserLoaderDescription>
+
+                <UserLoaderSubscribeWrapper>
+                    <UserLoaderSubscribeInfoBtn />
+                    <UserLoaderSubscribeInfoBtn />
+                    <UserLoaderSubscribeInfoBtn />
+                </UserLoaderSubscribeWrapper>
+            </UserLoaderContentWrapper>
+        </UserLoaderWrapper>
     )
 };
 

@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 
 const SupportForm = () => {
     const [problem, setProblem] = useState('');
-    const { mutate, isSuccess } = useCreateSupportMes();
+    const { mutate, isPending } = useCreateSupportMes();
 
     const handleSetProblem = (val: string) => {
         setProblem(val);
@@ -20,10 +20,10 @@ const SupportForm = () => {
     };
 
     useEffect(() => {
-        if (isSuccess) {
+        if (!isPending) {
             setProblem('');
         }
-    }, [isSuccess]);
+    }, [isPending]);
 
     return (
         <SupportFormWrapper onClick={handleMessage}>
@@ -35,7 +35,7 @@ const SupportForm = () => {
                 border={true}
             />
 
-            <SentButton>Отправить</SentButton>
+            <SentButton $isLoading={isPending} disabled={isPending}>Отправить</SentButton>
         </SupportFormWrapper>
     );
 };

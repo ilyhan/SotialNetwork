@@ -17,6 +17,7 @@ import unsubscribe from '@/common/svg-helper/icons/unsubscribe.svg?react';
 import quit from '@/common/svg-helper/icons/quit.svg?react';
 import edit from '@/common/svg-helper/icons/edit.svg?react';
 import close from '@/common/svg-helper/icons/close.svg?react';
+import trash from '@/common/svg-helper/icons/trash.svg?react';
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -45,7 +46,8 @@ export type ImageComponentsTypes =
     | 'unsubscribe'
     | 'quit'
     | 'edit'
-    | 'close';
+    | 'close'
+    | 'trash';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     profile,
@@ -67,4 +69,5 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     quit,
     edit,
     close,
+    trash,
 };

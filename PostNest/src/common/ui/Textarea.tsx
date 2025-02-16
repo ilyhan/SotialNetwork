@@ -24,7 +24,7 @@ const TextAreaWrapper = styled('div')<{$border: boolean}>`
     height: fit-content;
     padding: 5px 10px 5px 0px;
     ${props=>props.$border && `
-        border-radius: ${borders.smallRadius};
+        border-radius: ${borders.extraSmallRadius};
         border: 1px solid ${colors.gray};
         transition: ${transitions.mediumTransition};
 
@@ -41,7 +41,7 @@ const TextareaStyled = styled('textarea')`
     outline: none;
     overflow: hidden;
     resize: none;
-    border-radius: ${borders.smallRadius};
+    border-radius: ${borders.extraSmallRadius};
     padding: 0px 10px;
 
     &::placeholder{

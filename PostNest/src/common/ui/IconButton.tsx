@@ -3,10 +3,11 @@ import SvgHelper from "@/common/svg-helper/SvgHelper";
 import styled from "styled-components";
 import { hoverActiveBackground, resetButton } from "@/common/styles/mixins";
 import { borders } from "@/common/styles/styleConstants";
+import { ButtonHTMLAttributes } from "react";
 
-interface IconButtonProps {
+interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     icon: ImageComponentsTypes;
-    onClick: () => void;
+    onClick?: () => void;
     size?: number;
     iconStyle?: React.CSSProperties;
     style?: React.CSSProperties;
@@ -30,9 +31,9 @@ const StyleIcon = styled(SvgHelper) <{ $size: number }>`
     width: ${props => props.$size}px;
 `;
 
-const IconButton = ({ icon, onClick, size = 20, iconStyle, style, type = 'button' }: IconButtonProps) => {
+const IconButton = ({ icon, onClick, size = 20, iconStyle, style, type = 'button', ...props }: IconButtonProps) => {
     return (
-        <StyleButton onClick={onClick} $size={size + 12} type={type} style={style}>
+        <StyleButton onClick={onClick} $size={size + 12} type={type} style={style} {...props}>
             <StyleIcon iconName={icon} $size={size} style={iconStyle} />
         </StyleButton>
     );
