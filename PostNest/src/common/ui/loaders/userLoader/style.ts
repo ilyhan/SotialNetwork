@@ -1,5 +1,5 @@
 import { clampText, defaultWrapper, hoverActive, resetButton } from "@/common/styles/mixins";
-import { borders, colors, fonts } from "@/common/styles/styleConstants";
+import { borders, colors, fonts, screen } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 
@@ -20,22 +20,22 @@ export const UserLoaderWrapper = styled('div')`
         height: 100%;
         background-image: linear-gradient(
             100deg,
-            transparent,
+            rgba(255, 255, 255, 0.01) 20%,
             rgba(255, 255, 255, 0.5) 50%,
             transparent 80%
         );
         background-repeat: no-repeat;
-        background-size: 300px 530px;
-        background-position: -200% 0;
-        animation: animloader 1.5s linear infinite;
+        background-size: 200px 430px;
+        background-position: -300% 0;
+        animation: animloader 1.8s linear infinite;
     }
 
     @keyframes animloader {
         0% {
-            background-position: -200% 0;
+            background-position: -300% 0;
         }
         100% {
-            background-position: 200% 0;
+            background-position: 300% 0;
         }
     }
 `;
@@ -92,6 +92,10 @@ export const UserLoaderName = styled('h2')`
     width: 200px;
     border-radius: ${borders.smallRadius};
     background-color: lightgray;
+
+    @media (max-width: ${screen.mobile}){
+        width: 100px;
+    }
 `;
 
 export const UserLoaderMainInfoWrapper = styled('div')`

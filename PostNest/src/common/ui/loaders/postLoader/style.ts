@@ -23,22 +23,22 @@ export const PostLoaderWrapper = styled('div')`
         height: 100%;
         background-image: linear-gradient(
             100deg,
-            transparent,
+            rgba(255, 255, 255, 0.01) 20%,
             rgba(255, 255, 255, 0.5) 50%,
             transparent 80%
         );
         background-repeat: no-repeat;
         background-size: 200px 430px;
-        background-position: -200% 0;
+        background-position: -300% 0;
         animation: animloader 1.5s linear infinite;
     }
 
     @keyframes animloader {
         0% {
-            background-position: -200% 0;
+            background-position: -300% 0;
         }
         100% {
-            background-position: 200% 0;
+            background-position: 300% 0;
         }
     }
 `;

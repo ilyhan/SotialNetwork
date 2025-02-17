@@ -1,6 +1,6 @@
 
-// const baseUrl = 'http://localhost:3001/api';
-const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
+const baseUrl = 'http://localhost:3001/api';
+// const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const newSupportMessage = async (message: string) => {
     const res = await fetch(`${baseUrl}/support`,{
