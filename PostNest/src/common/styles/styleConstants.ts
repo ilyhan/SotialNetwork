@@ -33,23 +33,8 @@ export const transitions = {
 export const screen = {
     fullScreenWidth: 1440,
 
-    desktopScreenWidth: "1440px",
-    desktopScreenWidthAbove: "1441px",
-
-    tabletScreenWidth: "1023px",
-    tabletScreenWidthAbove: "1024px",
-
-    mobileScreenWidth: "768px",
-    mobileScreenWidthAbove: "769px",
-
-    lMobileScreenWidth: "424px",
-    lMobileScreenWidthAbove: "426px",
-
-    mMobileScreenWidth: "375px",
-    mMobileScreenWidthAbove: "376px",
-
-    sMobileScreenWidth: "320px",
-    sMobileScreenWidthAbove: "321px",
+    tablet: '950px',
+    mobile: '597px'
 };
 
 export const fonts = {

@@ -27,6 +27,7 @@
     max-width: 95%;
     scale: 0.2;
     transition: scale 0.3s;
+    overflow: hidden;
 }
 
 .modal__content_open {
@@ -46,4 +47,25 @@
 
 .modal__close-btn:hover{
     opacity: 0.7;
+}
+
+
+@media (max-width: 596px) {
+    .modal__overlay {
+        align-items: end;
+        width: 100vw;
+    }
+
+    .modal__content {
+        width: 100vw;
+        scale: 1;
+        translate: 0px 200px;  
+        transition:  0.3s;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .modal__content_open {
+        translate: 0px 0px;  
+    }
 }

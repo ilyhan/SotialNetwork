@@ -1,5 +1,5 @@
 import { hoverActiveBackground, resetButton } from "@/common/styles/mixins";
-import { borders, colors, transitions } from "@/common/styles/styleConstants";
+import { borders, colors, screen, transitions } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const SliderWrapper = styled('div')`
@@ -9,6 +9,10 @@ export const SliderWrapper = styled('div')`
     height: 500px; 
     width: 100%;
     overflow: hidden;
+
+    @media (max-width: ${screen.mobile}){
+        height: 300px;
+    }
 `;
 
 export const ContentWrapper = styled('div') <{ $image: string; $translate: number }>`

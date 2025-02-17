@@ -1,6 +1,7 @@
 import {
     HeaderWrapper,
-    HeaderContent
+    HeaderContent,
+    LogoWrapper,
 } from "@/common/components/header/style";
 import Logo from "@/common/components/Logo";
 import Notification from "@/common/components/notification/Notification";
@@ -10,7 +11,9 @@ const Header = () => {
     return (
         <HeaderWrapper>
             <HeaderContent>
-                <Logo />
+                <LogoWrapper>
+                    <Logo />
+                </LogoWrapper>
                 <SiteSearch />
                 <Notification />
             </HeaderContent>

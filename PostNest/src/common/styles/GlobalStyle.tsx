@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import {
   colors,
+  screen,
   transitions,
 } from "@/common/styles/styleConstants";
 import { resetLink } from "@/common/styles/mixins";
@@ -9,9 +10,14 @@ export const Container = styled('main')`
   display: grid;
   grid-template-columns: 300px minmax(300px, 804px);
   column-gap: 30px;
-  max-width: 1134px;
+  max-width: 1034px;
   margin: 0 auto;
   padding-inline: 12px;
+
+  @media (max-width: ${screen.tablet}){
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const GlobalStyles = createGlobalStyle`
