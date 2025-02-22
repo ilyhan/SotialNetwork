@@ -130,8 +130,10 @@ const Profile = () => {
                         <Post
                             key={post.id}
                             {...post}
-                            first_name={data?.username}
-                            last_name=''
+                            first_name={data?.first_name}
+                            last_name={data?.last_name}
+                            avatar={data?.avatar}
+                            username={data.username}
                             isMy={true}
                         />
                     ))

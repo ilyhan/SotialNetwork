@@ -18,6 +18,7 @@ export const UserAvatar = styled('img')`
     border-radius: ${borders.circle};
     height: 50px;
     width: 50px;
+    object-fit: cover;
 `;
 
 export const PreviewCreator = styled('div')`

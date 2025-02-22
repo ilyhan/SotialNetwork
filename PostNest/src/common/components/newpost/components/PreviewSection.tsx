@@ -10,6 +10,8 @@ import IconButton from "@/common/ui/IconButton";
 import TypeUpload from "@/common/components/newpost/components/TypeUpload";
 import defaultImg from "/images/default.jpg";
 import React, { useState } from "react";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import useGetProfile from "@/common/hooks/useGetProfile";
 const Picker = React.lazy(() => import("@emoji-mart/react"));
 const data = React.lazy(() => import("@emoji-mart/react"));
 
@@ -20,7 +22,18 @@ interface PreviewSectionProps {
     onAddMedia: (_: File) => void;
 }
 
+interface IAuthData {
+    id: number;
+    user: string;
+}
+
 const PreviewSection = ({ text, onTextChange, isActive, onAddMedia }: PreviewSectionProps) => {
+    const { data: authData }: UseQueryResult<IAuthData, Error> = useQuery({
+        queryKey: ['auth'],
+    });
+
+    const { data: user } = useGetProfile(`${authData?.user}`);
+
     const [showPicker, setShowPicker] = useState(false);
 
     const handleAddEmoji = (emoji: { native: string }) => {
@@ -29,7 +42,7 @@ const PreviewSection = ({ text, onTextChange, isActive, onAddMedia }: PreviewSec
 
     return (
         <PreviewCreator>
-            <UserAvatar src={defaultImg} />
+            <UserAvatar src={user?.avatar ?? defaultImg} />
 
             <TextAreaWrapper>
                 <Textarea

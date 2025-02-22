@@ -1,0 +1,107 @@
+.modal-confirm__overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal-confirm__overlay_open {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.modal-confirm__content {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px 0px rgba(187, 187, 187, 0.2), 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+    position: relative;
+    max-width: 95%;
+    scale: 0.2;
+    transition: scale 0.3s;
+    overflow: hidden;
+}
+
+.modal-confirm__content_open {
+    scale: 1;
+}
+
+.modal-confirm__close-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.modal-confirm__close-btn:hover{
+    opacity: 0.7;
+}
+
+.modal-confirm__buttons-all {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-top: 1px solid lightgrey;
+    font-weight: 500;
+}
+
+.modal-confirm__buttons-one{
+    width: 100%;
+    font-weight: 500;
+    border-top: 1px solid lightgrey;
+}
+
+.modal-confirm__button{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 10px 20px;
+}
+
+.modal-confirm__button_error {
+    color: red;
+    border-left: 1px solid lightgray;
+}
+
+.modal-confirm__button_full{
+    width: 100%;
+}
+
+@media (hover: hover) {
+    .modal-confirm__button:hover{
+        background-color: rgb(230, 230, 230);
+    }
+}
+
+.modal-confirm__content-text {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 350px;
+}
+
+
+@media (max-width: 596px) {
+    .modal-confirm__overlay {
+        width: 100vw;
+    }
+
+    .modal-confirm__content {
+        width: 100vw;
+        transition: 0.3s;
+    }
+}

@@ -1,19 +1,44 @@
 import useLogout from "@/common/hooks/useLogout";
 import IconButton from "@/common/ui/IconButton";
-import { useEffect } from "react";
+import ModalConfirm from "@/common/ui/modalConfirm/ModalConfirm";
+import { useEffect, useState } from "react";
 
 const Notification = () => {
     const { mutate, isSuccess } = useLogout();
+    const [open, setOpen] = useState(false);
 
-    useEffect(()=>{
-        if(isSuccess){
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+    };
+
+    const handleExit = () => {
+        setOpen(false);
+        mutate();
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
             location.reload();
         }
     }, [isSuccess]);
 
     return (
         <>
-            <IconButton icon='quit' onClick={mutate} iconStyle={{ color: 'red' }} />
+            <ModalConfirm
+                isOpen={open}
+                onSuccess={handleCancel}
+                onError={handleExit}
+                successText="Остаться"
+                errorText="Выйти"
+            >
+                Вы действительно хотите выйти?
+            </ModalConfirm>
+
+            <IconButton icon='quit' onClick={handleOpen} iconStyle={{ color: 'red' }} />
         </>
     );
 };
