@@ -1,5 +1,0 @@
-[[routes]]
-  # Match all requests that don't match existing static assets
-  match = "/*"
-  status = 200
-  edirect_to = "/index.html"
