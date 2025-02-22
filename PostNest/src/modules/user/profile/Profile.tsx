@@ -134,7 +134,7 @@ const Profile = () => {
                             last_name={data?.last_name}
                             avatar={data?.avatar}
                             username={data.username}
-                            isMy={true}
+                            isMy={data.username === username}
                         />
                     ))
                 }
