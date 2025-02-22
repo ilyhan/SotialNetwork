@@ -23,7 +23,7 @@ export default function RoutesProvider() {
     createRoutesFromElements(
       <>
         <Route element={<MainPage />}>
-          <Route path="/" element={<Navigate to="/home" replace />}/>
+          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/saved" element={<Saved />} />

@@ -1,34 +1,57 @@
-import NewPost from "@/common/components/newpost/NewPost";
-import Post from "@/common/components/post/Post"
-import { HomeWrapper } from "@/modules/user/home/style";
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-import useGetPosts from "@/common/hooks/useGetPosts";
+import Post from "@/common/components/post/Post";
+import { useGetPostsInfinit } from "@/common/hooks/useGetPostInfinity";
 import PostLoader from "@/common/ui/loaders/postLoader/PostLoader";
+import React, { useEffect } from "react";
+import { HomeWrapper } from "./style";
+import NewPost from "@/common/components/newpost/NewPost";
 
 const Home = () => {
-    const { data, isError, error, isLoading } = useGetPosts();
-    const client = useQueryClient();
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        isLoading,
+        isError,
+    } = useGetPostsInfinit();
 
-    useEffect(() => {
-        if (isError) {
-            if (error.message === 'Unauthorized') {
-                client.invalidateQueries({ queryKey: ['auth'] })
+    const handleScroll = () => {
+        if (
+            window.innerHeight + document.documentElement.scrollTop >=
+            document.documentElement.scrollHeight - 500
+        ) {
+            if (hasNextPage && !isFetchingNextPage) {
+                fetchNextPage();
             }
         }
-    }, [error, isError]);
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [hasNextPage, isFetchingNextPage]);
+
+    if (isError) {
+        return <div>Произошла ошибка при загрузке данных.</div>;
+    }
 
     return (
         <HomeWrapper>
             <NewPost />
             {isLoading
-                ? Array(10).fill('').map(()=><PostLoader/>)
-                : data?.map(post => (
-                    <Post
-                        key={post.id}
-                        {...post}
-                    />
+                ? Array(10).fill('').map(() => <PostLoader />)
+                : data?.pages.map((page, pageIndex) => (
+                    <React.Fragment key={pageIndex}>
+                        {page.map((post) => (
+                            <Post key={post.id} {...post} />
+                        ))}
+                    </React.Fragment>
                 ))}
+                
+            {!hasNextPage && <div>Больше нет постов</div>}
         </HomeWrapper>
     );
 };

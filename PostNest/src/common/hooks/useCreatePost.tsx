@@ -14,6 +14,7 @@ const useCreatePost = (): UseMutationResult<void, Error, FormData> => {
         onSuccess: () => {
             //TODO сделать добавление поста без повторного запроса 
             client.refetchQueries({queryKey: ['posts']});
+            client.refetchQueries({queryKey: ['profile', 'sdcsd']});
         }
     });
 }

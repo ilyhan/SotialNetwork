@@ -62,6 +62,7 @@ export const ImageWrapper = styled('div')`
 `;
 
 export const ProfileImage = styled('img')`
+    object-fit: cover;
     width: 100%;
     height: 100%;
 `;

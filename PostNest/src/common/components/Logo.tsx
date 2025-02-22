@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
+import logo from '/public/images/logo1.png';
 
 const Logo = () => {
     return(
         <Link to="/home">
-            {/* //TODO логотип добавить */}
-            PostNest
+            <img src={logo} alt="logo" height={50}/>
         </Link>
     );
 };

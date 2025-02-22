@@ -132,6 +132,7 @@ const Profile = () => {
                             {...post}
                             first_name={data?.username}
                             last_name=''
+                            isMy={true}
                         />
                     ))
                 }

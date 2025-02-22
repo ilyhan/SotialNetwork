@@ -4,10 +4,13 @@ import {
 import { IPost } from "@/common/interfaces/posts";
 import HeaderPost from "@/common/components/post/components/HeaderPost";
 import ContentPost from "@/common/components/post/components/ContentPost";
-import FooterPost from "./components/FooterPost";
+import FooterPost from "@/common/components/post/components/FooterPost";
 
-const Post = (post: IPost) => {
+interface IPostProps extends IPost {
+    isMy?: boolean;
+};
 
+const Post = ({ isMy = false, ...post }: IPostProps) => {
     return (
         <PostWrapper>
             <HeaderPost
@@ -15,14 +18,16 @@ const Post = (post: IPost) => {
                 first_name={post.first_name}
                 last_name={post.last_name}
                 avatar={post.avatar}
+                isMy={isMy}
+                post_id={post.id}
             />
 
-            <ContentPost 
+            <ContentPost
                 content={post.content}
                 media_content={post.media_content}
             />
 
-            <FooterPost 
+            <FooterPost
                 postId={post.id}
                 liked={post.liked}
                 likes_count={post.likes_count}

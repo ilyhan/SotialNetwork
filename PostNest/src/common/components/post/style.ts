@@ -20,7 +20,10 @@ export const SavedButton = styled('div')`
 `;
 
 export const PostHeader = styled('div')`
-    width: fit-content;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const LinkToPrifile = styled(Link)`
@@ -44,6 +47,7 @@ export const PostFooter = styled('div')`
 export const UserAvatar = styled('img')`
     height: 50px;
     width: 50px;
+    object-fit: cover;
     border-radius: ${borders.circle};
 `;
 

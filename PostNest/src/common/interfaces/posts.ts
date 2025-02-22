@@ -11,3 +11,8 @@ export interface IPost {
     first_name: string;
     last_name: string;
 };
+
+export interface IGetPostsParams {
+    page: number;
+    limit: number;
+};

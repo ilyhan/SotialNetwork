@@ -34,7 +34,7 @@ const InputWrapper = styled('div')`
 
 const SearchInput = memo(({ onSearch, placeholder = 'Поиск', onBlur, onFocus }: SearchInputProps) => {
     const [query, setQuery] = useState('');
-    console.log('12334')
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
     };
