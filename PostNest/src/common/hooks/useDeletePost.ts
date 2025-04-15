@@ -11,6 +11,11 @@ const useDeletePost = (): UseMutationResult<void, Error, number> => {
 
     return useMutation({
         mutationFn: (post_id: number) => deletePost(post_id),
+        onError: (error) => {
+            if (error.message === 'Unauthorized') {
+                client.invalidateQueries({ queryKey: ['auth'] });
+            }
+        },
         onSuccess: () => {
             client.setQueryData<IAuth>(['auth'], (old: IAuth | undefined) => {
                 if (old) {

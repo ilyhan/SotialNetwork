@@ -5,7 +5,9 @@ const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const serachUser = async (value: string): Promise<ISearchUser[]> => {
     const res = await fetch(`${baseUrl}/search/${value}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     });
 
     if (!res.ok) {
@@ -20,7 +22,9 @@ export const serachUser = async (value: string): Promise<ISearchUser[]> => {
 
 export const userProfile = async (username: string): Promise<IUser> => {
     const res = await fetch(`${baseUrl}/users/${username}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
     });
 
     if (!res.ok) {
@@ -47,11 +51,11 @@ export const registrationUser = async (userData: IUserRegistration): Promise<IUs
 
 export const subscribe = async (id: number) => {
     const res = await fetch(`${baseUrl}/follow`, {
-        credentials: 'include',
         method: "POST",
         body: JSON.stringify({ followedId: id }),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
     });
 
@@ -68,7 +72,9 @@ export const subscribe = async (id: number) => {
 export const updateBackground = async (formdata: FormData) => {
     const res = await fetch(`${baseUrl}/background`, {
         method: "POST",
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: formdata,
     });
 
@@ -85,7 +91,9 @@ export const updateBackground = async (formdata: FormData) => {
 export const updateAvatar = async (formdata: FormData) => {
     const res = await fetch(`${baseUrl}/avatar`, {
         method: "POST",
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: formdata,
     });
 
@@ -100,17 +108,14 @@ export const updateAvatar = async (formdata: FormData) => {
 };
 
 export const logout = async () => {
-    const res = await fetch(`${baseUrl}/logout`, {
-        method: "POST",
-        credentials: 'include',
-    });
-
-    return res.json();
+    localStorage.removeItem('token');
 };
 
 export const getFollowers = async (user_id: number) => {
     const res = await fetch(`${baseUrl}/followers/${user_id}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
     });
 
     if (!res.ok) {
@@ -125,7 +130,9 @@ export const getFollowers = async (user_id: number) => {
 
 export const getFollowing = async (user_id: number) => {
     const res = await fetch(`${baseUrl}/following/${user_id}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
     });
 
     if (!res.ok) {

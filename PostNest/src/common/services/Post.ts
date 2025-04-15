@@ -6,7 +6,9 @@ const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const getPosts = async (): Promise<IPost[]> => {
     const res = await fetch(`${baseUrl}/posts`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     })
     if (!res.ok) {
         if (res.status === 401) {
@@ -20,7 +22,9 @@ export const getPosts = async (): Promise<IPost[]> => {
 
 export const getInfinityPosts = async (param: IGetPostsParams): Promise<IPost[]> => {
     const res = await fetch(`${baseUrl}/infinity-post/?page=${param.page}&limit=${param.limit}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     });
 
     if (!res.ok) {
@@ -37,9 +41,9 @@ export const setLike = async (post_id: number) => {
     const res = await fetch(`${baseUrl}/post/like`, {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        credentials: 'include',
         body: JSON.stringify({
             post_id: post_id,
         })
@@ -58,7 +62,9 @@ export const setLike = async (post_id: number) => {
 export const newPost = async (formdata: FormData) => {
     const res = await fetch(`${baseUrl}/newpost`, {
         method: "POST",
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: formdata,
     });
 
@@ -74,7 +80,9 @@ export const newPost = async (formdata: FormData) => {
 
 export const getFavoritePosts = async (): Promise<IPost[]> => {
     const res = await fetch(`${baseUrl}/favorites`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
     });
 
     if (!res.ok) {
@@ -90,9 +98,9 @@ export const getFavoritePosts = async (): Promise<IPost[]> => {
 export const deletePost = async (post_id: number) => {
     const res = await fetch(`${baseUrl}/delete-post`, {
         method: "DELETE",
-        credentials: 'include',
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({ post_id }),
     });

@@ -35,6 +35,7 @@ export interface IUserResponse extends IUserRegistration {
 
 export interface IUserLoginResponse {
     message?: string;
+    token?: string;
 }
 
 export interface ILogin {

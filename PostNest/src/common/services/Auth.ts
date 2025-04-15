@@ -1,9 +1,19 @@
+import { IUserLoginResponse } from "../interfaces/user";
+
 // const baseUrl = 'http://localhost:3001/api';
 const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const refresh = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        throw new Error();
+    }
+
     const res = await fetch(`${baseUrl}/refresh`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (res.ok) {
@@ -11,20 +21,17 @@ export const refresh = async () => {
     }
 };
 
-export const login = async (name: string, password: string) => {
+export const login = async (name: string, password: string): Promise<IUserLoginResponse> => {
     const res = await fetch(`${baseUrl}/login`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: 'include',
         body: JSON.stringify({
             username: name,
             password: password,
         })
     });
 
-    if (res.ok) {
-        return res.json();
-    }
+    return res.json();
 };

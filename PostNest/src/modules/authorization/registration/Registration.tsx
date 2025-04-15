@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
-    const { mutate, data, isPending} = useRegistration();
+    const { mutate, data, isPending } = useRegistration();
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate();
 
@@ -28,16 +28,24 @@ const Registration = () => {
     } = useForm<IUserRegistration>();
 
     const submitForm = (data: IUserRegistration) => {
-        mutate(data);
-        console.log(data);
+        const newData = {...data};
+
+        Object.keys(newData).forEach((key) => {
+            const typedKey = key as keyof IUserRegistration;
+            if (typeof newData[typedKey] === 'string') {
+                newData[typedKey] = newData[typedKey].trim();
+            }
+        });
+
+        mutate(newData);
     };
 
     const handleSetChecked = () => {
         setChecked(prev => !prev);
     };
 
-    useEffect(()=>{
-        if(data && data.message == undefined){
+    useEffect(() => {
+        if (data && data.message == undefined) {
             navigate('/login')
         }
     }, [data])
@@ -110,7 +118,7 @@ const Registration = () => {
             </RegistrationForm>
 
             {data && data.message && <p>{data.message}</p>}
-            {isPending && <Loader style={{margin: '0px 50%', translate: '-50%'}}/>}
+            {isPending && <Loader style={{ margin: '0px 50%', translate: '-50%' }} />}
         </RegistrationWrapper>
     );
 };

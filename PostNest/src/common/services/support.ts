@@ -3,16 +3,16 @@
 const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const newSupportMessage = async (message: string) => {
-    const res = await fetch(`${baseUrl}/support`,{
+    const res = await fetch(`${baseUrl}/support`, {
         method: "POST",
-        credentials: 'include',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify({message})
+        body: JSON.stringify({ message })
     });
 
-    if(!res.ok) {
+    if (!res.ok) {
         if (res.status === 401) {
             throw new Error('Unauthorized');
         }

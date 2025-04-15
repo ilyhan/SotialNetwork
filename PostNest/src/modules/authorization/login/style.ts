@@ -38,3 +38,8 @@ export const Line = styled('div')`
     background-color: ${colors.lightGray};
     margin-block: 35px;
 `;
+
+export const ErrorMes = styled('p')`
+    margin-block: 15px -15px;
+    color: red;
+`;

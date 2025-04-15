@@ -8,7 +8,8 @@ import {
     LoginTitle,
     LoginButton,
     Registration,
-    Line
+    Line,
+    ErrorMes
 } from "@/modules/authorization/login/style";
 import { useForm } from "react-hook-form";
 
@@ -23,7 +24,7 @@ const Login = () => {
         handleSubmit,
     } = useForm<ILogin>();
 
-    const { mutate, isPending } = useLogin();
+    const { mutate, isPending, data } = useLogin();
 
     return (
         <LoginWrapper>
@@ -52,8 +53,13 @@ const Login = () => {
                     Далеe
                 </LoginButton>
 
-                {isPending && <Loader style={{margin: '0px 50%', translate: '-50%'}}/>}
+                {isPending && <Loader style={{ margin: '0px 50%', translate: '-50%' }} />}
             </LoginForm>
+
+            {data && data.message &&
+                <ErrorMes>{data.message}</ErrorMes>
+            }
+
 
             <Line />
 
