@@ -1,7 +1,7 @@
 import { IGetPostsParams, IPost } from "@/common/interfaces/posts";
 
-// const baseUrl = 'http://localhost:3001/api';
-const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
+const baseUrl = 'http://localhost:3001/api';
+// const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 
 export const getPosts = async (): Promise<IPost[]> => {

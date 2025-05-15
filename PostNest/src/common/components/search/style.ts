@@ -20,12 +20,19 @@ export const SearchResult = styled('div') <{ $show: boolean }>`
     transition: all 0.3s ease;
     opacity: ${props => props.$show ? '0' : '1'};
     transform: ${props => props.$show ? 'translateY(-30px)' : 'translateY(0)'};
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
 `;
 
 export const SearchList = styled('ul')`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+
 `;
 
 export const SearchItemWrapper = styled('li')`

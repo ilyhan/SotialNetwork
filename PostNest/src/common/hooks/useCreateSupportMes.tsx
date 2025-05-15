@@ -9,7 +9,7 @@ const useCreateSupportMes = (): UseMutationResult<void, Error, string> => {
         mutationFn: (message: string) => newSupportMessage(message),
         onError: (error) => {
             if (error.message === 'Unauthorized') {
-                client.invalidateQueries({ queryKey: ['auth'] });
+                client.refetchQueries({ queryKey: ['auth'] });
             }
         }
     });

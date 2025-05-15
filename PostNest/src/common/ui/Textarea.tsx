@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { clampText } from '@/common/styles/mixins';
 import { borders, colors, fonts, transitions } from '@/common/styles/styleConstants';
@@ -20,10 +20,10 @@ interface TextareaProps {
     border?: boolean;
 };
 
-const TextAreaWrapper = styled('div')<{$border: boolean}>`
+const TextAreaWrapper = styled('div') <{ $border: boolean }>`
     height: fit-content;
     padding: 5px 10px 5px 0px;
-    ${props=>props.$border && `
+    ${props => props.$border && `
         border-radius: ${borders.extraSmallRadius};
         border: 1px solid ${colors.gray};
         transition: ${transitions.mediumTransition};
@@ -66,31 +66,31 @@ const Textarea = ({
     border,
 }: TextareaProps) => {
 
-    //TODO оптимизировать
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange(e.target.value);
-        if(e.currentTarget.scrollHeight < 500){
+        if (e.currentTarget.scrollHeight < 500) {
             e.currentTarget.style.height = 'auto';
             e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
             e.currentTarget.style.overflow = 'hidden';
-        }else{
+        } else {
             e.currentTarget.style.overflow = 'auto';
         }
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          onChange(value + '\n');
+    const textarea = useRef<HTMLTextAreaElement | null>(null);
+
+    useEffect(() => {
+        if (value.length == 0 && textarea) {
+            console.log(value)
+            textarea.current!.style.height = `25.5px`
         }
-      };
+    }, [value]);
 
     return (
         <TextAreaWrapper style={styledWrapper} $border={!!border}>
             <TextareaStyled
                 value={value}
                 onChange={handleChange}
-                onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 name={name}
                 cols={cols}
@@ -101,6 +101,7 @@ const Textarea = ({
                 required={required}
                 autoComplete={autocomplete}
                 disabled={disabled}
+                ref={textarea}
             />
         </TextAreaWrapper>
     );
