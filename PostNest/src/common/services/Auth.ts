@@ -1,7 +1,7 @@
 import { IUserLoginResponse } from "../interfaces/user";
 
-const baseUrl = 'http://localhost:3001/api';
-// const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
+// const baseUrl = 'http://localhost:3001/api';
+const baseUrl = 'https://sotialnetworkbackend.onrender.com/api';
 
 export const refresh = async () => {
     const token = localStorage.getItem('token');
