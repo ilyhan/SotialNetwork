@@ -1,6 +1,11 @@
 import { UseMutationResult, useMutation, useQueryClient } from "@tanstack/react-query"
 import { newPost } from "@/common/services/Post";
 
+interface IAuth {
+    id: number;
+    user: string;
+}
+
 const useCreatePost = (): UseMutationResult<void, Error, FormData> => {
     const client = useQueryClient();
 
@@ -12,9 +17,14 @@ const useCreatePost = (): UseMutationResult<void, Error, FormData> => {
             }
         },
         onSuccess: () => {
-            //TODO сделать добавление поста без повторного запроса 
-            client.refetchQueries({queryKey: ['posts']});
-            client.refetchQueries({queryKey: ['profile', 'sdcsd']});
+            client.invalidateQueries({ queryKey: ['posts'] });
+
+            client.setQueryData<IAuth>(['auth'], (old: IAuth | undefined) => {
+                if (old) {
+                    client.resetQueries({ queryKey: ['profile', `${old.user}`] });
+                }
+                return old;
+            })
         }
     });
 }
