@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginWrapper = styled('div')`
+    min-height: fit-content;
     height: 100vh;
     display: flex;
     flex-direction: column;
