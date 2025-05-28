@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const RegistrationWrapper = styled('div')`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 25vh;
     text-align: center;
 `;
 
@@ -40,6 +43,18 @@ export const PrivacyLink = styled(Link)`
     text-align: left;
 `;
 
-export const CheckboxWrapper =  styled('div')`
+export const CheckboxWrapper = styled('div')`
     padding-top: 5px;
+`;
+
+export const RegLoader = styled('div')`
+    min-height: 50px;
+    width: 50px;
+    margin: 10px 50% 0px;
+    translate: -50%;
+`;
+
+export const ErrorMes = styled('p')`
+    margin-block: 15px -15px;
+    color: red;
 `;

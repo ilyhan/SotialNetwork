@@ -33,6 +33,7 @@ const SupportForm = () => {
                 placeholder="Подробно опишите свою проблему"
                 rows={3}
                 border={true}
+                style={{height: "100px"}}
             />
 
             <SentButton $isLoading={isPending} disabled={isPending}>Отправить</SentButton>

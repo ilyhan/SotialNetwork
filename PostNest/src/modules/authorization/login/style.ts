@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginWrapper = styled('div')`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 30vh;
     text-align: center;
 `;
 

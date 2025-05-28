@@ -31,6 +31,7 @@ export interface IUserRegistration {
 
 export interface IUserResponse extends IUserRegistration {
     message?: string;
+    error?: string;
 };
 
 export interface IUserLoginResponse {

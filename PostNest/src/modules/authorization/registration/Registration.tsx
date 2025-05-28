@@ -10,7 +10,9 @@ import {
     RegistrationTitle,
     PrivacyAccept,
     PrivacyLink,
-    CheckboxWrapper
+    CheckboxWrapper,
+    RegLoader,
+    ErrorMes
 } from "@/modules/authorization/registration/style";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -28,7 +30,7 @@ const Registration = () => {
     } = useForm<IUserRegistration>();
 
     const submitForm = (data: IUserRegistration) => {
-        const newData = {...data};
+        const newData = { ...data };
 
         Object.keys(newData).forEach((key) => {
             const typedKey = key as keyof IUserRegistration;
@@ -45,7 +47,7 @@ const Registration = () => {
     };
 
     useEffect(() => {
-        if (data && data.message == undefined) {
+        if (data && data.message == undefined && !data.error) {
             navigate('/login')
         }
     }, [data])
@@ -117,8 +119,18 @@ const Registration = () => {
                 </RegistrationBtn>
             </RegistrationForm>
 
-            {data && data.message && <p>{data.message}</p>}
-            {isPending && <Loader style={{ margin: '0px 50%', translate: '-50%' }} />}
+            {data 
+                ? data.error
+                    ? <ErrorMes>{data.error}</ErrorMes>
+                    : data.message && <ErrorMes>{data.message}</ErrorMes>
+                : <></>
+            }
+            <RegLoader>
+                {isPending &&
+                    <Loader />
+                }
+            </RegLoader>
+
         </RegistrationWrapper>
     );
 };
