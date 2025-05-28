@@ -19,8 +19,7 @@ const useDeletePost = (): UseMutationResult<void, Error, number> => {
         onSuccess: () => {
             client.setQueryData<IAuth>(['auth'], (old: IAuth | undefined) => {
                 if (old) {
-                    console.log(old.user);
-                    client.refetchQueries({ queryKey: ['profile', `${old.user}`] });
+                    client.invalidateQueries({ queryKey: ['profile', `${old.user}`] });
                 }
                 return old;
             })

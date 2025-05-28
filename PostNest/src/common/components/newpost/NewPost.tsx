@@ -29,7 +29,9 @@ const NewPost = () => {
         const newFormData = new FormData();
 
         files.forEach(file => {
-            newFormData.append('images', file);
+            if (file.size < 5 * 1024 * 1024) {
+                newFormData.append('images', file);
+            }
         });
 
         newFormData.append('content', text);
